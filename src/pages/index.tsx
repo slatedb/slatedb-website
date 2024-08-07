@@ -10,8 +10,8 @@ import Rive from "@rive-app/react-canvas";
 
 function HomepageHeader() {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="max-w-5xl mx-auto">
+    <header className={clsx('hero hero--primary rounded-b-[50px]', styles.heroBanner)}>
+      <div className="max-w-[80%] lg:w-6xl mx-auto">
         <div className={"grid lg:grid-cols-2 gap-8 text-left"}>
           <div className={'flex flex-col'}>
             <Heading as="h1" className="text-6xl font-medium">
@@ -31,7 +31,7 @@ function HomepageHeader() {
               </a>
             </div>
           </div>
-          <div className={'w-full h-full flex items-center justify-center'}>
+          <div className={'w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] mx-auto flex items-center justify-center'}>
             <Rive
                 src="/img/slatedb-hero.riv"
             />
@@ -86,7 +86,6 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <HomepageFeatures reverse/>
         <GetStarted />
       </main>
     </Layout>

@@ -43,7 +43,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4 shadow rounded-2xl')}>
+    <div className={clsx('shadow rounded-2xl')}>
       <div className="">
         <Svg className={styles.featureSvg} role="img" />
       </div>
@@ -55,14 +55,13 @@ function Feature({title, Svg, description}: FeatureItem) {
   );
 }
 
-export default function HomepageFeatures({reverse}: {reverse?: boolean}): JSX.Element {
+export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="flex flex-row gap-4">
-          {(reverse ? FeatureList.reverse() : FeatureList).map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {FeatureList.map((props, idx) => ( <Feature key={idx} {...props} /> ))}
+          {FeatureList.reverse().map((props, idx) => ( <Feature key={idx} {...props} /> ))}
         </div>
       </div>
     </section>

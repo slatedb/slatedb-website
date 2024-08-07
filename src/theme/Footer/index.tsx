@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer(): JSX.Element | null {
   return (
-      <div className={'bg-black w-full py-10'}>
+      <div className={'bg-black w-full py-10 px-5'}>
         <div className={'mx-auto max-w-6xl flex justify-between'}>
           <div className={'flex flex-col justify-between'}>
             <div className={'grid grid-cols-2'}></div>
