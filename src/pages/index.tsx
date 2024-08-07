@@ -1,27 +1,36 @@
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import { Icons } from '../components/icons';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+      <div className="max-w-5xl mx-auto">
+        <div className={"grid lg:grid-cols-2 gap-8 text-left"}>
+          <div className={'flex flex-col'}>
+            <Heading as="h1" className="text-6xl font-medium">
+              An embedded database built on object storage.
+            </Heading>
+            <p>
+              Unlike traditional LSM-tree storage engines, SlateDB writes data to object storage to
+              provide bottomless storage capacity, high durability, and easy replication.
+            </p>
+            <div className={'flex gap-4'}>
+              <a href={'https://github.com/slatedb/slatedb?tab=readme-ov-file#get-started'} target={'_blank'}
+                 className={'button-primary hover:no-underline flex items-center gap-1'}>
+                <span className={'text-lg'}>Get Started</span> <Icons.getStarted height={'18'}/>
+              </a>
+              <a href={''} className={'button-accent hover:no-underline flex items-center gap-2'}>
+                <span className={'text-lg'}>Documentation</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -31,8 +40,8 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
+      <Layout
+          title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
