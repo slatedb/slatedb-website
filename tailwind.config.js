@@ -12,9 +12,9 @@ module.exports = {
         extend: {
             colors: {
                 accent: {
-                    DEFAULT: "var(--accent-1)",
-                    1: "var(--accent-1)",
-                    2: "var(--accent-2)",
+                    DEFAULT: "var(--color-accent-1)",
+                    1: "var(--color-accent-1)",
+                    2: "var(--color-accent-2)",
                 }
             }
         },

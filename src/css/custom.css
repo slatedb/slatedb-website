@@ -32,6 +32,11 @@
 
   --ifm-link-hover-color: var(--color-accent-1);
   --ifm-link-hover-decoration: none;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
 }
 
 .header-github-link:hover {
