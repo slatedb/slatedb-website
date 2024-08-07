@@ -9,7 +9,15 @@ module.exports = {
         "./docs/**/*.{html,mdx,jsx,ts,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                accent: {
+                    DEFAULT: "var(--accent-1)",
+                    1: "var(--accent-1)",
+                    2: "var(--accent-2)",
+                }
+            }
+        },
     },
     plugins: [],
 }

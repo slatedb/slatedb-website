@@ -31,6 +31,10 @@ function HomepageHeader() {
               </a>
             </div>
           </div>
+          <div className={'w-full h-full flex items-center justify-center'}>
+            {/* TODO: we should have some meaningful hero image here */}
+            <img src={'/img/logo.svg'} alt={'slatedb hero'} height={250}/>
+          </div>
         </div>
       </div>
     </header>
