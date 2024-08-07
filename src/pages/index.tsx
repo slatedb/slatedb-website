@@ -59,7 +59,7 @@ function GetStarted() {
                    className={'button-primary hover:no-underline flex items-center justify-center gap-1'}
                    target={'_blank'}
                 >
-                  <span className={'text-base px-1'}>See a Full Example</span><img src={'/img/github-mark.svg'} alt={'github'} height={20}/>
+                  <span className={'text-base px-1'}>See a Full Example</span><img src={'/img/github-mark-white.svg'} alt={'github'} height={20}/>
                 </a>
               </div>
             </div>
