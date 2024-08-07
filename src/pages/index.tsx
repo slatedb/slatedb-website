@@ -19,7 +19,8 @@ function HomepageHeader() {
             </Heading>
             <p>
               Unlike traditional LSM-tree storage engines, SlateDB writes data to object storage to
-              provide bottomless storage capacity, high durability, and easy replication.
+              provide <span className={'font-bold text-accent-1'}>bottomless storage capacity,
+              high durability, and easy replication</span>.
             </p>
             <div className={'flex gap-4'}>
               <a href={'#get-started'}

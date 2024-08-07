@@ -53,31 +53,35 @@
 }
 
 .button-primary {
-  color: black;
+  color: white;
   padding: .25rem 1rem;
-  background-color: white;
+  background-color: black;
   font-size: .875rem;
   line-height: 1.25rem;
   border-radius: 1rem;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .button-primary:hover {
-  background-color: var(--color-accent-1);
-  color: black;
+  color: white;
+  border-color: var(--color-accent-1);
 }
 
 .button-accent {
   color: black;
   padding: .25rem 1rem;
-  background-color: var(--color-accent-2);
+  background-color: var(--color-accent-1);
   font-size: .875rem;
   line-height: 1.25rem;
   border-radius: 1rem;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .button-accent:hover {
   color: black;
-  background-color: var(--color-accent-1);
+  background-color: white;
 }
 
 .clean-btn {
