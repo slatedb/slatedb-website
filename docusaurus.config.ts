@@ -67,9 +67,9 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'right',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {
           href: "https://github.com/slatedb/slatedb",
