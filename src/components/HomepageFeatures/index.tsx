@@ -10,32 +10,56 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Object Store Durability',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        SlateDB inherits your object store's durability. Yup, 99.999999999% durability.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Zero-Disk Architecture',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        SlateDB runs without disks. No more disk failures, no more disk corruption.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Simple Replication',
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    description: (
+      <>
+        Why write complex replication protocols when you can let your object stores handle it?
+      </>
+    ),
+  },
+  {
+    title: 'Tunable Performance',
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    description: (
+      <>
+        Configure SlateDB to optimize for low latency, low cost, or high durability.
+      </>
+    ),
+  },
+  {
+    title: 'Strong Consistency',
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    description: (
+      <>
+        Supports a single writer and multiple readers. SlateDB provides transactions, snapshot isolation, and fencing.
+      </>
+    ),
+  },
+  {
+    title: 'Built in Rust',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        SlateDB is an embeddable library built in Rust. Use SlateDB with the language of your choice.
       </>
     ),
   },
@@ -61,7 +85,6 @@ export default function HomepageFeatures(): JSX.Element {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {FeatureList.map((props, idx) => ( <Feature key={idx} {...props} /> ))}
-          {FeatureList.reverse().map((props, idx) => ( <Feature key={idx} {...props} /> ))}
         </div>
       </div>
     </section>
