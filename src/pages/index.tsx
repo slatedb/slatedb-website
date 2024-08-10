@@ -27,7 +27,7 @@ function HomepageHeader() {
                  className={'button-primary hover:no-underline flex items-center gap-1'}>
                 <span className={'text-base'}>Get Started</span> <Icons.down height={'18'}/>
               </a>
-              <a href={''} className={'button-accent hover:no-underline flex items-center gap-2'}>
+              <a href={'/docs/introduction'} className={'button-accent hover:no-underline flex items-center gap-2'}>
                 <span className={'text-base'}>Documentation</span>
               </a>
             </div>
