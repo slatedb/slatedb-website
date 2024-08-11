@@ -63,7 +63,7 @@ function GetStarted() {
                 </a>
               </div>
             </div>
-            <div className={'bg-slate-600 rounded-2xl font-mono text-sm w-full'}>
+            <div className={'bg-slate-600 rounded-2xl font-mono text-sm w-full overflow-x-auto'}>
               <div className={'border-solid border-0 border-white border-b p-2 text-right'}>
                 <span className={'bg-black rounded-lg py-1 px-2'}>Cargo.toml</span>
               </div>
