@@ -10,7 +10,7 @@ function Footer(): JSX.Element | null {
               Copyright © {new Date().getFullYear()} SlateDB Authors. All rights reserved.
             </div>
           </div>
-          <div>
+          <div className={'pl-5'}>
             <img src={'/img/logo-full.svg'} height={30} alt={'slateDB'}/>
           </div>
         </div>
