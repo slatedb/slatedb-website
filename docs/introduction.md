@@ -14,7 +14,7 @@ Object storage is an amazing technology. It provides highly-durable, highly-scal
 * All object stores except S3 support compoare-and-swap (CAS) operations.
 * Amazon Web Service's S3 Express One Zone has single-digit millisecond latency.
 
-We believe that the future of object storage are multi-region, low latency buckets that support atomic CAS operations. SlateDB is a storage engine built for this future.
+We believe that the future of object storage are multi-region, low latency buckets that support atomic CAS operations. Inspired by [The Cloud Storage Triad: Latency, Cost, Durability](https://materializedview.io/p/cloud-storage-triad-latency-cost-durability), we set out to build a storage engine built for the cloud. SlateDB is that storage engine.
 
 ## Features
 
