@@ -11,7 +11,7 @@ import Rive from "@rive-app/react-canvas";
 function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary rounded-b-[50px]', styles.heroBanner)}>
-      <div className="max-w-[80%] lg:w-6xl mx-auto">
+      <div className="md:max-w-[80%] lg:w-6xl mx-auto">
         <div className={"grid lg:grid-cols-2 gap-8 text-left"}>
           <div className={'flex flex-col'}>
             <Heading as="h1" className="text-6xl font-medium">
@@ -63,7 +63,7 @@ function GetStarted() {
                 </a>
               </div>
             </div>
-            <div className={'bg-slate-600 rounded-2xl font-mono text-sm w-full'}>
+            <div className={'bg-slate-600 rounded-2xl font-mono text-sm w-full overflow-x-auto'}>
               <div className={'border-solid border-0 border-white border-b p-2 text-right'}>
                 <span className={'bg-black rounded-lg py-1 px-2'}>Cargo.toml</span>
               </div>

@@ -10,6 +10,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-heading-font-family: Alata, 'Alata';
