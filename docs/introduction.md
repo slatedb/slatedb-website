@@ -28,11 +28,18 @@ We believe that the future of object storage are multi-region, low latency bucke
 * **Writer fencing**: SlateDB enforces writer fencing. Zombie writer processes are detected and prevented from writing to the database.
 * **Pluggable compaction**: SlateDB supports pluggable compaction, so you can use the compaction strategies that fits your needs.
 
+:::note
+
+On-disk caching, snapshot isolation, and transactions are planned but not yet implemented.
+
+:::
+
 ## Use Cases
 
-SlateDB is a great fit for use cases that are tolerant to 50-100ms write latency, are tolerant to data loss during fialure, or are willing to pay for frequent API PUT calls. Such use cases include:
+SlateDB is a great fit for use cases that are tolerant to 50-100ms write latency, are tolerant to data loss during failure, or are willing to pay for frequent API PUT calls. Such use cases include:
 
 * Stream processing
+* Serverless functions
 * Durable execution
 * Workflow orcehstration
 * Durable caches
