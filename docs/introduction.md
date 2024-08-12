@@ -41,6 +41,6 @@ SlateDB is a great fit for use cases that are tolerant to 50-100ms write latency
 * Stream processing
 * Serverless functions
 * Durable execution
-* Workflow orcehstration
+* Workflow orchestration
 * Durable caches
 * Data lakes
