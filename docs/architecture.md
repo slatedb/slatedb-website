@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Architecture
 
-SlateDB is a log-structured merge-tree (LSM-tree). If you are unfamiliar with LSM-trees, we recommend reading thw following resources:
+SlateDB is a log-structured merge-tree (LSM-tree). If you are unfamiliar with LSM-trees, we recommend reading the following resources:
 
 * [RocksDB Overview](https://github.com/facebook/rocksdb/wiki/RocksDB-Overview)
 * [Mini-LSM](https://skyzh.github.io/mini-lsm/)
@@ -20,11 +20,11 @@ The following diagram shows the architecture of SlateDB:
 At a high level, SlateDB consists of the following components:
 
 * **Write-ahead log (WAL)**: A mutable WAL that stores recent writes that have not yet been written to object storage.
-* **Immutable WAL**: A WAL that is has been frozen and is in the process of being written to object storage in the `wal` directory.
+* **Immutable WAL**: A WAL that has been frozen and is in the process of being written to object storage in the `wal` directory.
 * **Memtable**: An in-memory data structure that stores recent writes that have been written to the object store's WAL directory, but not yet written to L0.
 * **Frozen memtable**: An immutable memtable that is in the process of being written to object storage in the `compacted` directory.
 * **`wal` SSTs**: SSTables that store recent WAL entries on object storage.
-* **`L0` SSTs**: SSTables that store recently memtables on object storage.
+* **`L0` SSTs**: SSTables that store recent memtables on object storage.
 * **Sorted runs (SRs)**: A sequence of compacted, range partitioned SSTables that are treated as a single logical table.
 
 ## Writes
@@ -64,9 +64,9 @@ SlateDB's manifest file contains the current state of the database, including:
 * **wal_id_last_compacted**: The last WAL ID that was contained in a memtable written to L0 at the time the manifest was written..
 * **wal_id_last_seen**: The most recent WAL ID seen at the head of the WAL at the time the manifest was written. WAL SSTables older than this ID should not be read and are eligible for garbage collection.
 * **l0_last_compacted**: The Last L0 SSTable that was compacted at the time the manifest was written. L0 SSTables older than this ID should not be read and are eligible for garbage collection.
-* **l0**: A list of currently availbale L0 SSTables.
+* **l0**: A list of currently available L0 SSTables.
 * **compacted**: A list of sorted runs (SRs) that are currently available to read.
-* **snapshots**: A list of read snapshots. This feature is not yet implemented, but will allow clients to create snapshots. Snapshots will allow writers to have multi-version concurrency control (MVCC) semantics. Readers can use snapshots to ensure they have a consistent view of the state of the database (and that gabage collectors won't delete SSTables that are still being read).
+* **snapshots**: A list of read snapshots. This feature is not yet implemented, but will allow clients to create snapshots. Snapshots will allow writers to have multi-version concurrency control (MVCC) semantics. Readers can use snapshots to ensure they have a consistent view of the state of the database (and that garbage collectors won't delete SSTables that are still being read).
 
 ## Compaction
 
