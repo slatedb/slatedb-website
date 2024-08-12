@@ -6,7 +6,7 @@ sidebar_position: 2
 
 SlateDB is a Rust library. It doesn't currently ship with any language bindings, so you must use Rust or generate your own bindings.
 
-## Installatiion
+## Installation
 
 SlateDB is not published to crates.io yet. Sdd the following to your `Cargo.toml`:
 
