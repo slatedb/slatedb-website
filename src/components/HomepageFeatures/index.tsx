@@ -46,11 +46,11 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Strong Consistency',
+    title: 'Scalable Readers',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Supports a single writer and multiple readers. SlateDB provides transactions, snapshot isolation, and fencing.
+        Supports a single writer and multiple readers. SlateDB detects and fences zombie writers.
       </>
     ),
   },
