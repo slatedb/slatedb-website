@@ -56,6 +56,19 @@ html, body {
   width: 24px;
 }
 
+.header-discord-link:hover {
+  opacity: 0.6;
+}
+
+.header-discord-link:before {
+  background: url(/img/discord-icon-white.svg);
+  background-size: contain;
+  content: "";
+  display: flex;
+  height: 24px;
+  width: 24px;
+}
+
 .button-primary {
   color: white;
   padding: .25rem 1rem;
