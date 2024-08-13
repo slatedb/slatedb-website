@@ -72,6 +72,12 @@ const config: Config = {
           label: 'Docs',
         },
         {
+          href: "https://discord.gg/mHYmGy5MgA",
+          position: "right",
+          className: "header-discord-link",
+          "aria-label": "Discord server",
+        },
+        {
           href: "https://github.com/slatedb/slatedb",
           position: "right",
           className: "header-github-link",
