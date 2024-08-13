@@ -34,19 +34,18 @@ SlateDB's write path is as follows:
 1. A `put` call is made on the client.
 2. The key/value pair is written to the mutable, in-memory WAL table.
 3. After `flush_ms` milliseconds, the mutable WAL table is frozen and an asynchronous write to object storage is triggered.
-4. When the write succeeds, the immutable WAL table is notified, which notifies all `await`'ing writers.
-5. The mutable WAL table is then inserted into the mutable memtable.
-6. When the memtable reaches a `l0_sst_size_bytes`, it is frozen and written as an L0 SSTable in the object store's `compacted` directory.
+4. When the write succeeds, insert the immutable WAL into the mutable memtable and notify `await`'ing clients.
+5. When the memtable reaches a `l0_sst_size_bytes`, it is frozen and written as an L0 SSTable in the object store's `compacted` directory.
 
 ## Reads
 
 SlateDB's read path is as follows:
 
 1. A `get` call is made on the client.
-2. The key is returned from the mutable memtable if found.
-3. The key is returned from the immutable memtable(s) if found.
-4. The key is returned from the L0 SSTables if found (searched from newest to oldest using bloom filtering).
-5. The key is returned from the sorted runs if found (searched from newest to oldest using bloom filtering).
+2. The value is returned from the mutable memtable if found.
+3. The value is returned from the immutable memtable(s) if found.
+4. The value is returned from the L0 SSTables if found (searched from newest to oldest using bloom filtering).
+5. The value is returned from the sorted runs if found (searched from newest to oldest using bloom filtering).
 
 :::note
 
@@ -61,7 +60,7 @@ SlateDB's manifest file contains the current state of the database, including:
 * **manifest_id**: An auto-incrementing ID that's incremented every time a new manifest is written.
 * **writer_epoch**: The current writer epoch. This field is used to detect zombie writers. There can be only one active writer at a time. Older writers are fenced off by the newer writer by incrementing this epoch.
 * **compactor_epoch**: The current compactor epoch. As with the `writer_epoch`, this field is used to guarantee that there is only one active compactor at a time.
-* **wal_id_last_compacted**: The last WAL ID that was contained in a memtable written to L0 at the time the manifest was written..
+* **wal_id_last_compacted**: The last WAL ID that was contained in a memtable written to L0 at the time the manifest was written.
 * **wal_id_last_seen**: The most recent WAL ID seen at the head of the WAL at the time the manifest was written. WAL SSTables older than this ID should not be read and are eligible for garbage collection.
 * **l0_last_compacted**: The Last L0 SSTable that was compacted at the time the manifest was written. L0 SSTables older than this ID should not be read and are eligible for garbage collection.
 * **l0**: A list of currently available L0 SSTables.
@@ -70,7 +69,7 @@ SlateDB's manifest file contains the current state of the database, including:
 
 ## Compaction
 
-SlateDB currently implements a very simple compaction strategy. The compaction strategy checks every `poll_interval`. If there are 4 or more L0 SSTables, the compactor schedules a new compaction job, which runs immediately. The job simply compacts all L0 SSTables into a single SR and writes the SSTables to the object store's `compacted` directory as the newest SR. Upon completion, the manifest to remove the L0 SSTables and add the new SR.
+SlateDB currently implements a very simple compaction strategy. The compaction strategy checks every `poll_interval`. If there are 4 or more L0 SSTables, the compactor schedules a new compaction job, which runs immediately. The job simply compacts all L0 SSTables into a single SR and writes the SSTables to the object store's `compacted` directory as the newest SR. Upon completion, the manifest is updated to remove the L0 SSTables and add the new SR.
 
 The compaction state is not currently persisted in the manifest. This means compaction will lose its current writes whenever the server is restarted. This is a known limitation and will be addressed in future versions of SlateDB.
 
