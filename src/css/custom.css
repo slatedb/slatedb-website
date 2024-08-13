@@ -30,12 +30,18 @@ html, body {
 
   --color-accent-1: #FAED27;
   --color-accent-2: #00FFFF;
+  --color-slate: #475569;
 
   --ifm-link-decoration: underline;
   --ifm-link-hover-color: #2e819a;
   --ifm-navbar-background-color: #000000;
   --ifm-navbar-link-color: #FFFFFF;
   --ifm-navbar-link-hover-color: var(--color-accent-1);
+
+  --ifm-menu-color: white;
+  --ifm-menu-color-active: var(--color-accent-1);
+  --ifm-menu-color-background-active: var(--color-slate);
+  --ifm-toc-link-color: black;
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
@@ -105,6 +111,7 @@ html, body {
 
 .clean-btn {
   color: white;
+  font-weight: 600;
 }
 
 .menu__link, .navbar__link, .table-of-contents__link, .pagination-nav__link {
@@ -117,4 +124,16 @@ html, body {
 
 .hash-link:hover {
   color: var(--color-accent-1)
+}
+
+.navbar__toggle {
+  color: white;
+}
+
+.navbar-sidebar {
+  background-color: black;
+}
+
+.menu {
+  background-color: var(--color-slate);
 }
