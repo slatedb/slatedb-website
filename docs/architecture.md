@@ -60,8 +60,8 @@ SlateDB's manifest file contains the current state of the database, including:
 * **manifest_id**: An auto-incrementing ID that's incremented every time a new manifest is written.
 * **writer_epoch**: The current writer epoch. This field is used to detect zombie writers. There can be only one active writer at a time. Older writers are fenced off by the newer writer by incrementing this epoch.
 * **compactor_epoch**: The current compactor epoch. As with the `writer_epoch`, this field is used to guarantee that there is only one active compactor at a time.
-* **wal_id_last_compacted**: The last WAL ID that was contained in a memtable written to L0 at the time the manifest was written.
-* **wal_id_last_seen**: The most recent WAL ID seen at the head of the WAL at the time the manifest was written. WAL SSTables older than this ID should not be read and are eligible for garbage collection.
+* **wal_id_last_compacted**: The last WAL ID that was contained in a memtable written to L0 at the time the manifest was written. WAL SSTables older than this ID should not be read and are eligible for garbage collection.
+* **wal_id_last_seen**: The most recent WAL ID seen at the head of the WAL at the time the manifest was written.
 * **l0_last_compacted**: The Last L0 SSTable that was compacted at the time the manifest was written. L0 SSTables older than this ID should not be read and are eligible for garbage collection.
 * **l0**: A list of currently available L0 SSTables.
 * **compacted**: A list of sorted runs (SRs) that are currently available to read.
