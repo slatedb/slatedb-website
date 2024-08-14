@@ -22,12 +22,12 @@ SlateDB uses [`tokio`](https://crates.io/crates/tokio) as its async runtime and 
 ```rust
 use bytes::Bytes;
 use object_store::{ObjectStore, memory::InMemory, path::Path};
-use slatedb::db:{Db, DbOptions};
-use slatedb::compactor::CompactorOptions;
+use slatedb::db:Db;
+use slatedb::config::{CompactorOptions, DbOptions};
 use std::{sync::Arc, time::Duration};
 
 #[tokio::main]
-fn main() {
+async fn main() {
     // Setup
     let object_store: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
     let options = DbOptions {
