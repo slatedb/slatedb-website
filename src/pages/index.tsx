@@ -51,8 +51,7 @@ function GetStarted() {
             <div className={'flex flex-col gap-2'}>
               <h2 className={'text-4xl font-medium'}>Get Started</h2>
               <p>
-                SlateDB currently only supports the Rust ecosystem, and is not published to crates.io. Add
-                the code snippet to your dependencies and you are off to the races!
+                Add SlateDB to your dependencies and you are off to the races!
               </p>
               <div className={'flex'}>
                 <a href={'https://github.com/slatedb/slatedb?tab=readme-ov-file#get-started'}
@@ -69,7 +68,7 @@ function GetStarted() {
               </div>
               <div className={'px-8 pt-4 pb-4'}>
                 <div>[<span className={'text-accent'}>dependencies</span>]</div>
-                <div>{`slatedb = { git = `}<span className={'text-accent-2'}>"https://github.com/slatedb/slatedb.git"</span>{`}`}</div>
+                <div>{`slatedb = `}<span className={'text-accent-2'}>"*"</span></div>
               </div>
             </div>
           </div>
