@@ -12,7 +12,7 @@ SlateDB is designed for key/value (KV) online transaction processing (OLTP) work
 
 You can definitely use S3 as a key-value store. An object path would represent a key and the object its value. But then you pay one PUT per write, which gets expensive.
 
-To make writes cheaper, you will probably want to batch writes (write multiple key-value pairs in a single `PUT` call). Batched key-value pairs need to be encoded/decoded, and a sorted strings table (SST) is a natural fit. Once you have SSTs, an log-structured merge-tree (LSM) is a natural fit.
+To make writes cheaper, you will probably want to batch writes (write multiple key-value pairs in a single `PUT` call). Batched key-value pairs need to be encoded/decoded, and a sorted strings table (SST) is a natural fit. Once you have SSTs, a log-structured merge-tree (LSM) is a natural fit.
 
 ## Why does SlateDB have a write-ahead log?
 
