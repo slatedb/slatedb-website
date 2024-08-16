@@ -22,7 +22,7 @@ SlateDB uses [`tokio`](https://crates.io/crates/tokio) as its async runtime and 
 ```rust
 use bytes::Bytes;
 use object_store::{ObjectStore, memory::InMemory, path::Path};
-use slatedb::db:Db;
+use slatedb::db::Db;
 use slatedb::config::{CompactorOptions, DbOptions};
 use std::{sync::Arc, time::Duration};
 
