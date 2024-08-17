@@ -31,3 +31,15 @@ SlateDB, by contrast, writes everything (including the WAL) to object storage. T
 RocksDB-cloud also does not cache writes, so recently written data must be read from object storage even if reads occur immediately after writes. SlateDB, by contrast, caches recent writes in memory. Eventually, we will also add on-disk caching as well.
 
 Finally, it's unclear how open RocksDB-cloud is to outside contributors. The code is available, but there is very little documentation or community.
+
+## How is this different from RocksDB on EBS?
+
+Amazon Web Services (AWS) elastic block storage (EBS) runs in a single availability zone (AZ). To get SlateDB's durability (when run on S3 standard buckets), you would need to replicate the across two AZs. To get SlateDB's availability, you'd need to replicate across three AZs. This complicates the main write path (you would need synchronous replication) and add to cost.
+
+S3 is inherently much more flexible and elastic. You don't need to overprovision, you don't need to manage volume sizes, and you don't have to worry about transient space amplification from compaction.
+
+S3 also allows for more cost/perf/availability tradeoffs. For example, users can sacrifice some availability by running one node in front of S3 and replacing it on a failure. [The Cloud Storage Triad: Latency, Cost, Durability])(https://materializedview.io/p/cloud-storage-triad-latency-cost-durability) talks more about these tradeoffs.
+
+## How is this different from RocksDB on EFS?
+
+Amazon Web Services (AWS) elastic file system (EFS) is very expensive ($0.30/GB-month for storage, $0.03/GB for reads, and $0.06/GB for writes). It's also unclear how well RocksDB works with network file system (NFS) mounted filesystems, and whether [close-to-open consistency](https://docs.aws.amazon.com/efs/latest/ug/features.html#consistency) breaks any internal assumptions in RocksDB.
