@@ -38,7 +38,7 @@ Amazon Web Services (AWS) elastic block storage (EBS) runs in a single availabil
 
 S3 is inherently much more flexible and elastic. You don't need to overprovision, you don't need to manage volume sizes, and you don't have to worry about transient space amplification from compaction.
 
-S3 also allows for more cost/perf/availability tradeoffs. For example, users can sacrifice some availability by running one node in front of S3 and replacing it on a failure. [The Cloud Storage Triad: Latency, Cost, Durability])(https://materializedview.io/p/cloud-storage-triad-latency-cost-durability) talks more about these tradeoffs.
+S3 also allows for more cost/perf/availability tradeoffs. For example, users can sacrifice some availability by running one node in front of S3 and replacing it on a failure. [The Cloud Storage Triad: Latency, Cost, Durability](https://materializedview.io/p/cloud-storage-triad-latency-cost-durability) talks more about these tradeoffs.
 
 ## How is this different from RocksDB on EFS?
 
