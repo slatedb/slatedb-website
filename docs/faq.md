@@ -34,7 +34,7 @@ Finally, it's unclear how open RocksDB-cloud is to outside contributors. The cod
 
 ## How is this different from RocksDB on EBS?
 
-Amazon Web Services (AWS) elastic block storage (EBS) runs in a single availability zone (AZ). To get SlateDB's durability (when run on S3 standard buckets), you would need to replicate the across two AZs. To get SlateDB's availability, you'd need to replicate across three AZs. This complicates the main write path (you would need synchronous replication) and add to cost.
+Amazon Web Services (AWS) elastic block storage (EBS) runs in a single availability zone (AZ). To get SlateDB's durability and availability (when run on S3 standard buckets), you would need to replicate the across three AZs. This complicates the main write path (you would need synchronous replication) and add to cost.
 
 S3 is inherently much more flexible and elastic. You don't need to overprovision, you don't need to manage volume sizes, and you don't have to worry about transient space amplification from compaction.
 
