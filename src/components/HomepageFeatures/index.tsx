@@ -1,17 +1,20 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import {Icons} from "@site/src/components/icons";
+import {Icon, IconProps} from "@tabler/icons-react";
+import {ForwardRefExoticComponent, RefAttributes} from "react";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Object Store Durability',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: Icons.infinity,
     description: (
       <>
         SlateDB inherits your object store's durability. Yup, 99.999999999% durability.
@@ -20,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Zero-Disk Architecture',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: Icons.floppy,
     description: (
       <>
         SlateDB runs without disks. No more disk failures, no more disk corruption.
@@ -29,7 +32,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Simple Replication',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: Icons.replication,
     description: (
       <>
         Why write complex replication protocols when you can let your object store handle it?
@@ -38,7 +41,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Tunable Performance',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: Icons.adjust,
     description: (
       <>
         Configure SlateDB to optimize for low latency, low cost, or high durability.
@@ -47,7 +50,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Scalable Readers',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: Icons.scale,
     description: (
       <>
         Supports a single writer and multiple readers. SlateDB detects and fences zombie writers.
@@ -56,7 +59,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Built in Rust',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: Icons.terminal,
     description: (
       <>
         SlateDB is an embeddable library built in Rust. Use SlateDB with the language of your choice.
@@ -68,8 +71,8 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('shadow rounded-2xl')}>
-      <div className="">
-        <Svg className={styles.featureSvg} role="img" />
+      <div className="flex justify-center p-10">
+        <Svg className={`rounded-2xl shadow-lg p-4 text-slate-800 bg-gradient-to-br from-accent-1 to-90% to-amber-400`} stroke={1.2} role="img" size={120}/>
       </div>
       <div className="padding-horiz--md">
         <Heading as="h3">{title}</Heading>

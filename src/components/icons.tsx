@@ -1,5 +1,19 @@
-import {IconChevronDown, IconTerminal2} from "@tabler/icons-react";
+import {
+  IconAdjustments,
+  IconChartArrowsVertical,
+  IconChevronDown,
+  IconDeviceFloppy,
+  IconInfinity,
+  IconReplace,
+  IconTerminal2
+} from "@tabler/icons-react";
 
 export const Icons = {
-  down: IconChevronDown
+  adjust: IconAdjustments,
+  down: IconChevronDown,
+  floppy: IconDeviceFloppy,
+  infinity: IconInfinity,
+  replication: IconReplace,
+  scale: IconChartArrowsVertical,
+  terminal: IconTerminal2
 }
