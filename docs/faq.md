@@ -43,3 +43,15 @@ S3 also allows for more cost/perf/availability tradeoffs. For example, users can
 ## How is this different from RocksDB on EFS?
 
 Amazon Web Services (AWS) elastic file system (EFS) is very expensive ($0.30/GB-month for storage, $0.03/GB for reads, and $0.06/GB for writes). It's also unclear how well RocksDB works with network file system (NFS) mounted filesystems, and whether [close-to-open consistency](https://docs.aws.amazon.com/efs/latest/ug/features.html#consistency) breaks any internal assumptions in RocksDB.
+
+## How is this different from DynamoDB?
+
+DynamoDB has a different cost structure and API than SlateDB. In general, SlateDB will be cheaper. DynamoDB charges $0.1/GiB for storage. If you use S3 standard with SlateDB, storage starts at $0.023/GiB (nearly 5 times cheaper).
+
+S3 standard charges $0.005 per-1000 writes (PUT, DELETE, etc.) and $0.0004 per-1000 reads. DynamoDB charges in read and write request units (RRU and WRU, respectively). Writes cost $1.25 per-million write units and $0.25 per0million read units. Depending on consistency and data size, a single request can cost multiple units (see [here]([url](https://aws.amazon.com/dynamodb/pricing/on-demand/)) for details). SlateDB batches writes by default, so it's usually going to have a less expensive API bill. If you batch DyanmoDB writes, you might be able to get similar fees.
+
+DynamoDB offers 99.999% SLA while an S3 standard bucket offers 99.99%, so DynamoDB is more available.
+
+DynamoDB also requires partitioning. SlateDB doesn't have partitioning. Instead, you must build a partitioning schemeon top of SlateDB if you need it. Though, since SlateDB fences stale writers, partitionin management should be fairly straightforward.
+
+SlateDB also offers some unique features like the ability to create snapshot clones of a database at a specific point in time.
