@@ -72,7 +72,7 @@ function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('shadow rounded-2xl')}>
       <div className="flex justify-center p-10">
-        <Svg className={`rounded-2xl shadow-lg p-4 text-slate-800 bg-gradient-to-br from-accent-1 to-90% to-amber-400`} stroke={1.2} role="img" size={120}/>
+        <Svg className={`rounded-2xl shadow-lg p-4 text-slate-800 bg-accent-1`} stroke={1.2} role="img" size={120}/>
       </div>
       <div className="padding-horiz--md">
         <Heading as="h3">{title}</Heading>
