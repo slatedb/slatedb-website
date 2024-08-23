@@ -20,7 +20,7 @@ We believe that the future of object storage are multi-region, low latency bucke
 
 * **Zero-Disk architecture**: SlateDB is easy to operate. It runs as an in-process storage engine with no local state, no control plane, and no replication protocol.
 * **Single-writer**: SlateDB is designed for a single writer. Partitioning can easily be built on top of SlateDB since fencing is supported.
-* **Mulitple-readers**: Multiple readers on different nodes can all read the same SlateDB database.
+* **Multiple-readers**: Multiple readers on different nodes can all read the same SlateDB database.
 * **Read caching**: SlateDB supports in-memory and (optional) on-disk read caching to reduce latency and API cost.
 * **Snapshot isolation**: SlateDB supports snapshot isolation, which allows readers and writers to see a consistent view of the database.
 * **Transactions**: Transactional writes are supported.
