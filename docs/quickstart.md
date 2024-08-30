@@ -31,11 +31,15 @@ async fn main() {
     // Setup
     let object_store: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
     let options = DbOptions {
-        flush_ms: 100,
+        flush_interval: Duration::from_millis(100),
         manifest_poll_interval: Duration::from_millis(100),
+        #[cfg(feature = "wal_disable")] wal_enabled: true,
         min_filter_keys: 10,
         l0_sst_size_bytes: 128,
+        l0_max_ssts: 8,
+        max_unflushed_memtable: 2,
         compactor_options: Some(CompactorOptions::default()),
+        compression_codec: None,
     };
     let kv_store = Db::open_with_opts(
         Path::from("/tmp/test_kv_store"),
@@ -62,5 +66,4 @@ async fn main() {
 
     // Close
     kv_store.close().await.unwrap();
-}
-```
+}```
