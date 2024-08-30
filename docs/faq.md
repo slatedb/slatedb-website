@@ -55,3 +55,13 @@ DynamoDB offers 99.999% SLA while an S3 standard bucket offers 99.99%, so Dynamo
 DynamoDB also requires partitioning. SlateDB doesn't have partitioning. Instead, you must build a partitioning scheme on top of SlateDB if you need it. Though, since SlateDB fences stale writers, partition management should be fairly straightforward.
 
 SlateDB also offers some unique features like the ability to create snapshot clones of a database at a specific point in time.
+
+## What happens if the process goes down before SlateDB flushes data to object storage?
+
+Any in-flight data that hasn't yet been flushed to object storage will be lost.
+
+To prevent data loss, SlateDB's `put()` API will block until the data has been flushed to object storage. Client processes can block until their data has been durably written. Blocking can be disabled with [`WriteOptions`](https://docs.rs/slatedb/latest/slatedb/config/struct.WriteOptions.html) for clients that don't need this durability guarantee.
+
+## Does SlateDB support column families?
+
+SlateDB does not support [column families](https://github.com/facebook/rocksdb/wiki/column-families). Opening multiple SlateDB databases is cheap. This is what we recommend if you need to separate data.
