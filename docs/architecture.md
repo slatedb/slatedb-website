@@ -69,9 +69,21 @@ SlateDB's manifest file contains the current state of the database, including:
 
 ## Compaction
 
-SlateDB currently implements a very simple compaction strategy. The compaction strategy checks every `poll_interval`. If there are 4 or more L0 SSTables, the compactor schedules a new compaction job, which runs immediately. The job simply compacts all L0 SSTables into a single SR and writes the SSTables to the object store's `compacted` directory as the newest SR. Upon completion, the manifest is updated to remove the L0 SSTables and add the new SR.
+L0 SSTs are written to the `compacted` directory in the object store when `l0_sst_size_bytes` is exceeded. SlateDB's compactor is responsible for merging SSTs from L0 into lower levels (L1, L2, and so on). These lower levels are referred to as _sorted runs_ in SlateDB. Each SST in a sorted run contains a distinct subset of the keyspace.
 
-The compaction state is not currently persisted in the manifest. This means compaction will lose its current writes whenever the server is restarted. This is a known limitation and will be addressed in future versions of SlateDB.
+SlateDB's compactor has the following components:
+
+* **Orchestrator**: Runs the compactor's event loop. Calls out to the scheduler to see if there are any compaction tasks to run. Updates the manifest with the results of compaction.
+* **Scheduler**: Schedules compaction tasks. The scheduler is responsible for determining which SSTs to compact and when to compact them. Though pluggable, the current implementation is a size-tiered compaction strategy.
+* **Executor**: Executes compaction tasks. The executor is responsible for reading SSTs from the object store, merging them, and writing the results back to the object store.
+
+For more details, see SlateDB's [compaction design document](https://github.com/slatedb/slatedb/blob/main/docs/0002-compaction.md).
+
+## Size Tiered Compaction
+
+### Backpressure
+
+SlateDB uses a backpressure mechanism to prevent writes from overwhelming the compaction process. If the number of SSTs in L0 exceeds a maximum limit (`l0_max_ssts`), writes to L0 are paused until the compactor can catch up. This cascades upward to the memtable flusher, which will be block writes to its in-memory memtable if `max_unflushed_memtable` is exceeded.
 
 ## Garbage Collection
 
