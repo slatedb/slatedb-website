@@ -79,8 +79,6 @@ SlateDB's compactor has the following components:
 
 For more details, see SlateDB's [compaction design document](https://github.com/slatedb/slatedb/blob/main/docs/0002-compaction.md).
 
-## Size Tiered Compaction
-
 ### Backpressure
 
 SlateDB uses a backpressure mechanism to prevent writes from overwhelming the compaction process. If the number of SSTs in L0 exceeds a maximum limit (`l0_max_ssts`), writes to L0 are paused until the compactor can catch up. This cascades upward to the memtable flusher, which will be block writes to its in-memory memtable if `max_unflushed_memtable` is exceeded.
