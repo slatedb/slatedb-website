@@ -9,7 +9,7 @@ SlateDB is a log-structured merge-tree (LSM-tree). If you are unfamiliar with LS
 * [RocksDB Overview](https://github.com/facebook/rocksdb/wiki/RocksDB-Overview)
 * [Mini-LSM](https://skyzh.github.io/mini-lsm/)
 
-This page contains a high-level overview of SlateDB's architecture, read/write paths, manifest, and compaction. For more details, see SlateDB's [design documents](https://github.com/slatedb/slatedb/tree/main/docs).
+This page contains a high-level overview of SlateDB's architecture, read/write paths, manifest, and compaction. For more details, see SlateDB's [design documents](https://github.com/slatedb/slatedb/tree/main/rfcs).
 
 ## Overview
 
@@ -77,7 +77,7 @@ SlateDB's compactor has the following components:
 * **Scheduler**: Schedules compaction tasks. The scheduler is responsible for determining which SSTs to compact and when to compact them. Though pluggable, the current implementation is a size-tiered compaction strategy.
 * **Executor**: Executes compaction tasks. The executor is responsible for reading SSTs from the object store, merging them, and writing the results back to the object store.
 
-For more details, see SlateDB's [compaction design document](https://github.com/slatedb/slatedb/blob/main/docs/0002-compaction.md).
+For more details, see SlateDB's [compaction design document](https://github.com/slatedb/slatedb/blob/main/rfcs/0002-compaction.md).
 
 ### Backpressure
 
