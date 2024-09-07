@@ -2,15 +2,15 @@
 title: Connect SlateDB to Azure Blob Storage
 ---
 
-This tutorial shows you how to use SlateDB on azure blob storage. You would need a real azure blob storage account to complete the tutorial.
+This tutorial shows you how to use SlateDB on Azure Blob Storage (ABS). You would need an ABS account to complete the tutorial.
 
 ## Setup
 
-[Install](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) azure cli.
+[Install](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) the Azure CLI.
 
 ## Create Storage account
 
-Following steps creates a storage account and lists the keys. This section can be skipped if you already have a storage account created.
+The following steps creates a storage account and list the keys. This section can be skipped if you already have a storage account created.
 
 ```bash
 # Set storage account names
@@ -162,4 +162,4 @@ test_slateDB/wal/00000000000000000004.sst  BlockBlob    Hot          64        a
 
 ```
 
-Each of these SST files is a write-ahead log entry. They get flushed based on the `flush_interval` config or when `flush` is called explicitly.
+Each of these SST files is a write-ahead log (WAL) entry. They get flushed based on the `flush_interval` config or when `flush` is called explicitly.
