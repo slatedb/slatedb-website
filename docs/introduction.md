@@ -11,7 +11,7 @@ SlateDB is an embedded storage engine built as a [log-structured merge-tree](htt
 Object storage is an amazing technology. It provides highly-durable, highly-scalable, highly-available storage at a great cost. And recent advancements have made it even more attractive:
 
 * Google Cloud Storage supports multi-region and dual-region buckets for high availability.
-* All object stores except S3 support compoare-and-swap (CAS) operations.
+* All object stores except S3 support compare-and-swap (CAS) operations.
 * Amazon Web Service's S3 Express One Zone has single-digit millisecond latency.
 
 We believe that the future of object storage are multi-region, low latency buckets that support atomic CAS operations. Inspired by [The Cloud Storage Triad: Latency, Cost, Durability](https://materializedview.io/p/cloud-storage-triad-latency-cost-durability), we set out to build a storage engine built for the cloud. SlateDB is that storage engine.
@@ -24,7 +24,7 @@ We believe that the future of object storage are multi-region, low latency bucke
 * **Read caching**: SlateDB supports in-memory and (optional) on-disk read caching to reduce latency and API cost.
 * **Snapshot isolation**: SlateDB supports snapshot isolation, which allows readers and writers to see a consistent view of the database.
 * **Transactions**: Transactional writes are supported.
-* **Object store persistence**: SlateDB writes all data to object storage, which means SlateDB has the same duability, scability, and availaiblity as your object store.
+* **Object store persistence**: SlateDB writes all data to object storage, which means SlateDB has the same durability, scalability, and availability as your object store.
 * **Writer fencing**: SlateDB enforces writer fencing. Zombie writer processes are detected and prevented from writing to the database.
 * **Pluggable compaction**: SlateDB supports pluggable compaction, so you can use the compaction strategies that fits your needs.
 
