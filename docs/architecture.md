@@ -29,6 +29,8 @@ At a high level, SlateDB consists of the following components:
 
 ## Writes
 
+![Example banner](/img/architecture-write.png)
+
 SlateDB's write path is as follows:
 
 1. A `put` call is made on the client.
@@ -38,6 +40,8 @@ SlateDB's write path is as follows:
 5. When the memtable reaches a `l0_sst_size_bytes`, it is frozen and written as an L0 SSTable in the object store's `compacted` directory.
 
 ## Reads
+
+![Example banner](/img/architecture-read.png)
 
 SlateDB's read path is as follows:
 
@@ -68,6 +72,8 @@ SlateDB's manifest file contains the current state of the database, including:
 * **snapshots**: A list of read snapshots. This feature is not yet implemented, but will allow clients to create snapshots. Snapshots will allow writers to have multi-version concurrency control (MVCC) semantics. Readers can use snapshots to ensure they have a consistent view of the state of the database (and that garbage collectors won't delete SSTables that are still being read).
 
 ## Compaction
+
+![Example banner](/img/architecture-compaction.png)
 
 L0 SSTs are written to the `compacted` directory in the object store when `l0_sst_size_bytes` is exceeded. SlateDB's compactor is responsible for merging SSTs from L0 into lower levels (L1, L2, and so on). These lower levels are referred to as _sorted runs_ in SlateDB. Each SST in a sorted run contains a distinct subset of the keyspace.
 
