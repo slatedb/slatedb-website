@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">Architecture | SlateDB</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://slatedb.io/img/slatedb-opengraph.jpg"><meta data-rh="true" name="twitter:image" content="https://slatedb.io/img/slatedb-opengraph.jpg"><meta data-rh="true" property="og:url" content="https://slatedb.io/docs/architecture"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Architecture | SlateDB"><meta data-rh="true" name="description" content="SlateDB is a log-structured merge-tree (LSM-tree). If you are unfamiliar with LSM-trees, we recommend reading the following resources:"><meta data-rh="true" property="og:description" content="SlateDB is a log-structured merge-tree (LSM-tree). If you are unfamiliar with LSM-trees, we recommend reading the following resources:"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://slatedb.io/docs/architecture"><link data-rh="true" rel="alternate" href="https://slatedb.io/docs/architecture" hreflang="en"><link data-rh="true" rel="alternate" href="https://slatedb.io/docs/architecture" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.b733f3f5.css">
-<script src="/assets/js/runtime~main.8a8618a0.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.11280764.js" defer="defer"></script>
 <script src="/assets/js/main.120b519a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -17,7 +17,7 @@
 <p>This page contains a high-level overview of SlateDB&#x27;s architecture, read/write paths, manifest, and compaction. For more details, see SlateDB&#x27;s <a href="https://github.com/slatedb/slatedb/tree/main/rfcs" target="_blank" rel="noopener noreferrer">design documents</a>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="overview">Overview<a class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" href="/docs/architecture#overview">​</a></h2>
 <p>The following diagram shows the architecture of SlateDB:</p>
-<p><img decoding="async" loading="lazy" alt="Example banner" src="/assets/images/architecture-0693e6671885f6d2c02639b4b3d403a7.png" width="1115" height="793" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Architecture diagram" src="/assets/images/architecture-0693e6671885f6d2c02639b4b3d403a7.png" width="1115" height="793" class="img_ev3q"></p>
 <p>At a high level, SlateDB consists of the following components:</p>
 <ul>
 <li><strong>Write-ahead log (WAL)</strong>: A mutable WAL that stores recent writes that have not yet been written to object storage.</li>
@@ -29,6 +29,7 @@
 <li><strong>Sorted runs (SRs)</strong>: A sequence of compacted, range partitioned SSTables that are treated as a single logical table.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="writes">Writes<a class="hash-link" aria-label="Direct link to Writes" title="Direct link to Writes" href="/docs/architecture#writes">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="Write diagram" src="/assets/images/architecture-write-cfc88e389943fe707c535e71314188f0.png" width="910" height="578" class="img_ev3q"></p>
 <p>SlateDB&#x27;s write path is as follows:</p>
 <ol>
 <li>A <code>put</code> call is made on the client.</li>
@@ -38,6 +39,7 @@
 <li>When the memtable reaches a <code>l0_sst_size_bytes</code>, it is frozen and written as an L0 SSTable in the object store&#x27;s <code>compacted</code> directory.</li>
 </ol>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="reads">Reads<a class="hash-link" aria-label="Direct link to Reads" title="Direct link to Reads" href="/docs/architecture#reads">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="Read diagram" src="/assets/images/architecture-read-13a171f8b93999cf2b54891f64d67287.png" width="902" height="533" class="img_ev3q"></p>
 <p>SlateDB&#x27;s read path is as follows:</p>
 <ol>
 <li>A <code>get</code> call is made on the client.</li>
@@ -61,6 +63,7 @@
 <li><strong>snapshots</strong>: A list of read snapshots. This feature is not yet implemented, but will allow clients to create snapshots. Snapshots will allow writers to have multi-version concurrency control (MVCC) semantics. Readers can use snapshots to ensure they have a consistent view of the state of the database (and that garbage collectors won&#x27;t delete SSTables that are still being read).</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="compaction">Compaction<a class="hash-link" aria-label="Direct link to Compaction" title="Direct link to Compaction" href="/docs/architecture#compaction">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="Compaction diagram" src="/assets/images/architecture-compaction-2f53d1df9420b603759fe99da22990a2.png" width="827" height="513" class="img_ev3q"></p>
 <p>L0 SSTs are written to the <code>compacted</code> directory in the object store when <code>l0_sst_size_bytes</code> is exceeded. SlateDB&#x27;s compactor is responsible for merging SSTs from L0 into lower levels (L1, L2, and so on). These lower levels are referred to as <em>sorted runs</em> in SlateDB. Each SST in a sorted run contains a distinct subset of the keyspace.</p>
 <p>SlateDB&#x27;s compactor has the following components:</p>
 <ul>
