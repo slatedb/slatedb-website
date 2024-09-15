@@ -15,7 +15,7 @@ This page contains a high-level overview of SlateDB's architecture, read/write p
 
 The following diagram shows the architecture of SlateDB:
 
-![Example banner](/img/architecture.png)
+![Architecture diagram](/img/architecture.png)
 
 At a high level, SlateDB consists of the following components:
 
@@ -29,7 +29,7 @@ At a high level, SlateDB consists of the following components:
 
 ## Writes
 
-![Example banner](/img/architecture-write.png)
+![Write diagram](/img/architecture-write.png)
 
 SlateDB's write path is as follows:
 
@@ -41,7 +41,7 @@ SlateDB's write path is as follows:
 
 ## Reads
 
-![Example banner](/img/architecture-read.png)
+![Read diagram](/img/architecture-read.png)
 
 SlateDB's read path is as follows:
 
@@ -73,7 +73,7 @@ SlateDB's manifest file contains the current state of the database, including:
 
 ## Compaction
 
-![Example banner](/img/architecture-compaction.png)
+![Compaction diagram](/img/architecture-compaction.png)
 
 L0 SSTs are written to the `compacted` directory in the object store when `l0_sst_size_bytes` is exceeded. SlateDB's compactor is responsible for merging SSTs from L0 into lower levels (L1, L2, and so on). These lower levels are referred to as _sorted runs_ in SlateDB. Each SST in a sorted run contains a distinct subset of the keyspace.
 
