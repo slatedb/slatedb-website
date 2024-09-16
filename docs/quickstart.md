@@ -23,24 +23,14 @@ SlateDB uses [`tokio`](https://crates.io/crates/tokio) as its async runtime and 
 use bytes::Bytes;
 use object_store::{ObjectStore, memory::InMemory, path::Path};
 use slatedb::db::Db;
-use slatedb::config::{CompactorOptions, DbOptions};
-use std::{sync::Arc, time::Duration};
+use slatedb::config::DbOptions;
+use std::sync::Arc;
 
 #[tokio::main]
 async fn main() {
     // Setup
     let object_store: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
-    let options = DbOptions {
-        flush_interval: Duration::from_millis(100),
-        manifest_poll_interval: Duration::from_millis(100),
-        #[cfg(feature = "wal_disable")] wal_enabled: true,
-        min_filter_keys: 10,
-        l0_sst_size_bytes: 128,
-        l0_max_ssts: 8,
-        max_unflushed_memtable: 2,
-        compactor_options: Some(CompactorOptions::default()),
-        compression_codec: None,
-    };
+    let options = DbOptions::default();
     let kv_store = Db::open_with_opts(
         Path::from("/tmp/test_kv_store"),
         options,
@@ -66,4 +56,5 @@ async fn main() {
 
     // Close
     kv_store.close().await.unwrap();
-}```
+}
+```
