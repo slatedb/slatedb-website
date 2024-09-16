@@ -30,7 +30,7 @@ We believe that the future of object storage are multi-region, low latency bucke
 
 :::note
 
-On-disk caching, snapshot isolation, and transactions are planned but not yet implemented.
+Snapshot isolation and transactions are planned but not yet implemented.
 
 :::
 

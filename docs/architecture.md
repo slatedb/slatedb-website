@@ -91,4 +91,10 @@ SlateDB uses a backpressure mechanism to prevent writes from overwhelming the co
 
 ## Garbage Collection
 
-SlateDB does not currently garbage collect old WAL SSTables, L0 SSTables, or stale SRs. This is a known limitation and will be addressed in future versions of SlateDB.
+SlateDB garbage collects old manifests and SSTables. The collector runs in the client process. It will periodically delete:
+
+- Manifests older than `min_age` that are not referenced by any current snapshot.
+- WAL SSTables older than `min_age` and older than `wal_id_last_compacted`.
+- L0 SSTables older than `min_age` and not referenced by the current manifest or any active snapshot.
+
+Each of these three file types (manifest, WAL SSTable, and L0 SSTable) can be configured with its own `min_age` and `poll_interval` parameters. Garbage collection can also be disabled for each file type by setting the corresponding `GarbageCollectorOptions` attribute to `None`.

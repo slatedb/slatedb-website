@@ -26,7 +26,11 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
-    'configuration',
+    {
+      type: 'link',
+      label: 'Configuration',
+      href: 'https://docs.rs/slatedb/latest/slatedb/config/index.html',
+    },
     'architecture',
     'faq',
     {

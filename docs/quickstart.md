@@ -8,11 +8,11 @@ SlateDB is a Rust library. It doesn't currently ship with any language bindings,
 
 ## Installation
 
-SlateDB is not published to crates.io yet. Add the following to your `Cargo.toml`:
+Add the following to your `Cargo.toml` to use SlateDB:
 
 ```toml
 [dependencies]
-slatedb = { git = "https://github.com/slatedb/slatedb.git" }
+slatedb = "*"
 ```
 
 ## Usage
