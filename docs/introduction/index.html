@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">Introduction | SlateDB</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://slatedb.io/img/slatedb-opengraph.jpg"><meta data-rh="true" name="twitter:image" content="https://slatedb.io/img/slatedb-opengraph.jpg"><meta data-rh="true" property="og:url" content="https://slatedb.io/docs/introduction"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Introduction | SlateDB"><meta data-rh="true" name="description" content="SlateDB is an embedded storage engine built as a log-structured merge-tree. Unlike traditional LSM-tree storage engines, SlateDB writes all data to object storage."><meta data-rh="true" property="og:description" content="SlateDB is an embedded storage engine built as a log-structured merge-tree. Unlike traditional LSM-tree storage engines, SlateDB writes all data to object storage."><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://slatedb.io/docs/introduction"><link data-rh="true" rel="alternate" href="https://slatedb.io/docs/introduction" hreflang="en"><link data-rh="true" rel="alternate" href="https://slatedb.io/docs/introduction" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.b733f3f5.css">
-<script src="/assets/js/runtime~main.2fd1fdb2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.cdd5b5fd.js" defer="defer"></script>
 <script src="/assets/js/main.84322901.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -14,7 +14,7 @@
 <p>Object storage is an amazing technology. It provides highly-durable, highly-scalable, highly-available storage at a great cost. And recent advancements have made it even more attractive:</p>
 <ul>
 <li>Google Cloud Storage supports multi-region and dual-region buckets for high availability.</li>
-<li>All object stores except S3 support compare-and-swap (CAS) operations.</li>
+<li>All object stores support compare-and-swap (CAS) operations.</li>
 <li>Amazon Web Service&#x27;s S3 Express One Zone has single-digit millisecond latency.</li>
 </ul>
 <p>We believe that the future of object storage are multi-region, low latency buckets that support atomic CAS operations. Inspired by <a href="https://materializedview.io/p/cloud-storage-triad-latency-cost-durability" target="_blank" rel="noopener noreferrer">The Cloud Storage Triad: Latency, Cost, Durability</a>, we set out to build a storage engine built for the cloud. SlateDB is that storage engine.</p>
