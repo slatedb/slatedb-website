@@ -16,7 +16,7 @@ To make writes cheaper, you will probably want to batch writes (write multiple k
 
 ## Why does SlateDB have a write-ahead log?
 
-Some developers have asked why SlateDB needs a write-ahead log (WAL) if we're batching writes. Couldn't we just write the batches directly to L0 as an SST?
+Some developers have asked why SlateDB needs a write-ahead log (WAL) if we're batching writes. Couldn't we just write the batches directly to level 0 (L0) as an SST?
 
 We opted to have the WAL separate from the L0 SST so that we could frequently write SSTs without increasing the number of L0 SSTs we have. Since reads are served from L0 SSTs, having too many of them would result in a very large amount of metadata that needs to be managed in memory. By contrast, we don't serve reads from the durable WAL, we only use it for recovery.
 
@@ -65,3 +65,11 @@ To prevent data loss, SlateDB's `put()` API will block until the data has been f
 ## Does SlateDB support column families?
 
 SlateDB does not support [column families](https://github.com/facebook/rocksdb/wiki/column-families). Opening multiple SlateDB databases is cheap. This is what we recommend if you need to separate data.
+
+## Are there any limits to key and value sizes?
+
+Keys are limited to a maximum of 65 KiB (65,535 bytes). Values are limited to a maximum of 4 GiB (4,294,967,295 bytes). Larger values require more memory and will take longer to write, so we recommend testing performance at your expected value size to ensure it meets your requirements.
+
+## Why does SlateDB have a WAL if it batches writes?
+
+SlateDB batches writes to its WAL to reduce the number of PUT calls to object storage. One might wonder if we could just write the batches directly to L0 as an SST. Though we use the same SST file format for the WAL, L0, and all compacted SSTs, we opted to keep the WAL separate from L0. This lets us frequently write WAL SSTs without increasing the number of L0 SSTs we have. Since reads are served from L0 SSTs, having too many of them would result in a very large amount of metadata that needs to be managed in memory. By contrast, the durable WAL is used only for recovery, so we can write to it frequently without impacting write performance.
