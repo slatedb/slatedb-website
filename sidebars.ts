@@ -32,6 +32,11 @@ const sidebars: SidebarsConfig = {
       href: 'https://docs.rs/slatedb/latest/slatedb/config/index.html',
     },
     'architecture',
+    {
+      type: 'link',
+      label: 'Design Documents',
+      href: 'https://github.com/slatedb/slatedb/tree/main/rfcs',
+    },
     'faq',
     {
       type: 'link',
