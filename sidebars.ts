@@ -49,6 +49,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'faq',
+    'performance',
     {
       type: 'link',
       label: 'API Reference',
