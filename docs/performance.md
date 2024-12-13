@@ -14,12 +14,20 @@ SlateDB comes with a [bencher](https://github.com/slatedb/slatedb/tree/main/src/
 
 ### Nightly
 
-We run this tool in nightly, and publish the results [here](https://slatedb.io/performance/benchmarks/main). We have configured the job to use a [LocalFilesystem](https://docs.rs/object_store/latest/object_store/local/struct.LocalFileSystem.html) instead of S3, so the results don't reflect performance against a real S3 bucket. We plan to use S3 with this benchmark in the future.
+We run this tool in nightly and publish the results [here](https://slatedb.io/performance/benchmarks/main). The benchmark runs on [WarpBuild](https://warpbuild.com)'s [warp-ubuntu-latest-x64-16x](https://docs.warpbuild.com/cloud-runners) runners.
 
-<iframe src="https://slatedb.io/performance/benchmarks/main/" width="100%" height="540px"></iframe>
+:::warning
+
+We have configured the job to use a [LocalFilesystem](https://docs.rs/object_store/latest/object_store/local/struct.LocalFileSystem.html) instead of S3, so the results don't reflect performance against a real S3 bucket. We plan to use S3 with this benchmark in the future.
+
+:::
+
+<iframe src="https://slatedb.io/performance/benchmarks/main" width="100%" height="540px"></iframe>
 
 ## Microbenchmarks
 
 We use [Criterion](https://bheisler.github.io/criterion.rs/) to run microbenchmarks (located in [benches](https://github.com/slatedb/slatedb/tree/main/benches)) for specific interanl SlateDB functions. A comment is left on all PRs where a > 200% regression is detected.
 
-Microbenchmarks also run nightly with the [pprof-rs](https://github.com/tikv/pprof-rs) profiler. The results profiler protobuf files are published [here](https://github.com/slatedb/slatedb-website/tree/gh-pages/performance/microbenchmark-pprofs/main). We highly recommend using [pprof.me](https://pprof.me/) to view the results, though any [pprof](https://github.com/google/pprof) compatible tool may be used.
+Microbenchmarks also run nightly with the [pprof-rs](https://github.com/tikv/pprof-rs) profiler. The results profiler protobuf files are published [here](https://github.com/slatedb/slatedb-website/tree/gh-pages/performance/microbenchmark-pprofs/main). The microbenchmarks run on [standard Linux Github action runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories).
+
+We highly recommend using [pprof.me](https://pprof.me/) to view the `<microbenchmar>.pb` files, though any [pprof](https://github.com/google/pprof) compatible tool may be used.
