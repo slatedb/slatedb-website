@@ -72,6 +72,7 @@ async fn main() {
         );
         count += 1;
     }
+
     // Scan over bound range
     let start_key = Bytes::from_static(b"test_key1");
     let end_key = Bytes::from_static(b"test_key2");
@@ -84,6 +85,7 @@ async fn main() {
         iter.next().await.unwrap(),
         Some((b"test_key2" as &[u8], b"test_value2" as &[u8]).into())
     );
+
     // Seek ahead to next key
     let mut iter = kv_store.scan(..).await.unwrap();
     let next_key = Bytes::from_static(b"test_key4");
