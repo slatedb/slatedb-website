@@ -1,5 +1,6 @@
 ---
 title: Connect SlateDB to Azure Blob Storage
+sidebar_position: 1
 ---
 
 This tutorial shows you how to use SlateDB on Azure Blob Storage (ABS). You would need an ABS account to complete the tutorial.
@@ -53,7 +54,7 @@ cargo add slatedb object-store --features object-store/azure
 
 :::note
 
-If you see "`object_store::path::Path` and `object_store::path::Path` have similar names, but are actually distinct types", you might need to pin the `object_store` version to match `slatedb`'s `object_store` version.
+If you see "`object_store::path::Path` and `object_store::path::Path` have similar names, but are actually distinct types", you might need to pin the `object_store` version to match `slatedb`'s `object_store` version. SlateDB also exports `slatedb::object_store` for convenience, if you'd rather use that.
 
 :::
 
