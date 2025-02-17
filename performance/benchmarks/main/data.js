@@ -1,130 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1739694749476,
+  "lastUpdate": 1739781372172,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "src/bencher/benchmark-db.sh": [
-      {
-        "commit": {
-          "author": {
-            "name": "Chris Riccomini",
-            "username": "criccomini",
-            "email": "criccomini@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "16e6a84d37a199b93142beba6c156317edc5753d",
-          "message": "Fix `wal_id_last_seen` race condition (#448)\n\nI found `next_wal_sst_id` to be overloaded. It currently seems to\r\nrepresent two things:\r\n\r\n- The last WAL SST ID that was written (as `next_wal_sst_id - 1`)\r\n- The next WAL SST ID to use when creating an immutable WAL (that hasn't\r\nyet been written)\r\n\r\nAfter discussing with @agavra, it seems like the simplest thing to do\r\nwas to remove ID from `ImmutableWal`, and read/update the\r\n`next_wal_sst_id` in `flush.rs` when the write actually occurs. Changes\r\ninclude:\r\n\r\n- Keeps the previous test I wrote\r\n- Removes `id` from `ImmutableWal`\r\n- Uses `next_wal_sst_id` in `flush.rs` to determine the next WAL SST ID\r\nto use\r\n- Increments `next_wal_sst_id` via (`increment_next_wal_id`) upon a\r\nsuccessful WAL write\r\n\r\nFixes #433",
-          "timestamp": "2025-01-16T23:49:17Z",
-          "url": "https://github.com/slatedb/slatedb/commit/16e6a84d37a199b93142beba6c156317edc5753d"
-        },
-        "date": 1737189106931,
-        "tool": "customBiggerIsBetter",
-        "benches": [
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
-            "value": 16886.684,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
-            "value": 16831.934,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
-            "value": 16134.983,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
-            "value": 4028.917,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
-            "value": 15246.85,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
-            "value": 3806.65,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
-            "value": 17588.566,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
-            "value": 11703.95,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
-            "value": 14500.6,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
-            "value": 9641.9,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
-            "value": 16244.7,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
-            "value": 24385.461,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
-            "value": 10079.62,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
-            "value": 15124.28,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
-            "value": 10850.16,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
-            "value": 43319.859,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
-            "value": 5885.46,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
-            "value": 23495.82,
-            "unit": "ops/sec"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -3659,6 +3537,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 22933.76,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rohan",
+            "username": "rodesai",
+            "email": "desai.p.rohan@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "89639250f98a4c36d66a3e3ffd6135ec01401769",
+          "message": "support more dynamic creation/read of statistics (#482)\n\nThis patch aims to solve a few problems with the way we export stats:\r\n- Its very tedious to export statistics. For every new statistic you\r\nhave to write some new code to read the statistic value and export it to\r\nwhere you want to query/visualize your metrics.\r\n- Statistics are all statically configured at compile time. At the same\r\ntime, SlateDB has a few components that can be plugged in at runtime by\r\nimplementing some trait. A good example now is the block cache. I expect\r\nother similar examples will emerge, like the compaction policy. There's\r\nno great way to expose statistics from these components, other than to\r\nhave the user get to them by holding a reference to the component and\r\nquerying them directly.\r\n- All stats are dumped into a single giant stats struct. Though not a\r\nhuge problem, its not ideal for a couple reasons. First, it would be\r\nbetter for statistics not to be writable outside of some scope. For\r\nexample, the compactor shouldn't able to be able to touch os cache\r\nstatistics. It also makes the stats a bit harder to go through since\r\nthey need to be manually grouped.\r\n\r\nThis patch tries to solve these problems by doing the following:\r\n\r\nFirst, stats are exposed to the user via a new StatRegistry struct.\r\nStats can be added to the registry by name, looked up by name, and\r\nlisted. This way, users that want to exfiltrate all stats can simply\r\nlist the registry and send all observed stats. Components can register\r\ntheir own stats at runtime. To avoid collisions, we use a name prefixed\r\nby the name of the component writing the statistic followed by \"/\".\r\n\r\nSecond, each component maintains its stats separately, and adds them to\r\nthe registry. This provides some isolation between the stats of\r\ndifferent components.\r\n\r\nAt this point I'm looking for feedback on whether folks think the basic\r\nproblems and solution make sense. So it's probably premature to do a\r\ndetailed code review. If folks are on-board with the direction, I'll\r\nclean it up and take it out of draft mode.\r\n\r\nCo-authored-by: Chris Riccomini <criccomini@users.noreply.github.com>",
+          "timestamp": "2025-02-16T22:25:42Z",
+          "url": "https://github.com/slatedb/slatedb/commit/89639250f98a4c36d66a3e3ffd6135ec01401769"
+        },
+        "date": 1739781371718,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
+            "value": 17872.619,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 15855.783,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
+            "value": 16679.883,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
+            "value": 4164.183,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 17889.801,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 4464.68,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
+            "value": 15915.48,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
+            "value": 10627.3,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 14011.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 9347.12,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
+            "value": 15664.18,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
+            "value": 23549.641,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 9953.92,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 14887.76,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
+            "value": 11001.5,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
+            "value": 44056.801,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 5613.36,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 22481.84,
             "unit": "ops/sec"
           }
         ]
