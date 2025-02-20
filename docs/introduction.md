@@ -26,7 +26,7 @@ We believe that the future of object storage are multi-region, low latency bucke
 * **Transactions**: Transactional writes are supported.
 * **Object store persistence**: SlateDB writes all data to object storage, which means SlateDB has the same durability, scalability, and availability as your object store.
 * **Writer fencing**: SlateDB enforces writer fencing. Zombie writer processes are detected and prevented from writing to the database.
-* **Pluggable compaction**: SlateDB supports pluggable compaction, so you can use the compaction strategies that fits your needs.
+* **Pluggable compaction**: SlateDB supports pluggable compaction, so you can use the compaction strategy that fits your needs.
 
 :::note
 
