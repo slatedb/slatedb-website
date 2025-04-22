@@ -1,130 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745224676480,
+  "lastUpdate": 1745311055655,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "src/bencher/benchmark-db.sh": [
-      {
-        "commit": {
-          "author": {
-            "name": "criccomini",
-            "username": "criccomini",
-            "email": "criccomini@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "criccomini",
-            "username": "criccomini",
-            "email": "criccomini@users.noreply.github.com"
-          },
-          "id": "7dfd7e3a78f21e63afcf888eecaf4103730a990b",
-          "message": "Bump version to 0.5.2",
-          "timestamp": "2025-03-21T18:08:02Z",
-          "url": "https://github.com/slatedb/slatedb/commit/7dfd7e3a78f21e63afcf888eecaf4103730a990b"
-        },
-        "date": 1742718818047,
-        "tool": "customBiggerIsBetter",
-        "benches": [
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
-            "value": 11772.833,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
-            "value": 12565.75,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
-            "value": 11628.3,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
-            "value": 2916.367,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
-            "value": 13379,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
-            "value": 3352.56,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
-            "value": 13421.24,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
-            "value": 8937.68,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
-            "value": 12785.32,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
-            "value": 8521.54,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
-            "value": 13138.24,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
-            "value": 19706.561,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
-            "value": 8727.12,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
-            "value": 13069.5,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
-            "value": 8985.42,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
-            "value": 35893.461,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
-            "value": 4819.7,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
-            "value": 19262.381,
-            "unit": "ops/sec"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -3659,6 +3537,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 21799.66,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "David Moravek",
+            "username": "dmvk",
+            "email": "dmoravek@confluent.io"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "e3d27f7253f7cd02e3da1e484a3b5b875654721b",
+          "message": "[hotfix] Avoid double-pinning of LevelGet getters. (#551)",
+          "timestamp": "2025-04-17T14:53:27Z",
+          "url": "https://github.com/slatedb/slatedb/commit/e3d27f7253f7cd02e3da1e484a3b5b875654721b"
+        },
+        "date": 1745311054930,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
+            "value": 20172.85,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 20852.301,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
+            "value": 20982.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
+            "value": 5261.96,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 21513.779,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 5374.38,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
+            "value": 18879.779,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
+            "value": 12579.92,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 14597.32,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 9732.58,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
+            "value": 16049.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
+            "value": 24038.16,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 9516.8,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 14259.64,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
+            "value": 9519.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
+            "value": 38152.781,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 5485.68,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 21987.779,
             "unit": "ops/sec"
           }
         ]
