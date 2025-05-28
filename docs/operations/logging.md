@@ -11,7 +11,7 @@ Here's a basic example showing how to consume tracing logs with `tracing_subscri
 ```rust
 use bytes::Bytes;
 use object_store::{ObjectStore, memory::InMemory, path::Path};
-use slatedb::db::Db;
+use slatedb::Db;
 use slatedb::config::DbOptions;
 use std::sync::Arc;
 
