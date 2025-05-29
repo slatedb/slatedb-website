@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1748421554802,
+  "lastUpdate": 1748507931029,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -1585,6 +1585,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 20781.779,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "6f8fdcbe1f82d4a426d800db30d41efe672000fc",
+          "message": "Add Clippy checks for rand RNGs (#587)\n\nThis is a follow on to #585. Per @agavra's comment, I'm adding some\nbasic linting checks to detect misuse of `rand` RNGs.\n\nI played around with a few different ways to do this:\n\n- `grep` in a GH action didn't work well because it detected Rng usage\nin tests, which is fine (IMO).\n- `cargo deny` doesn't allow per-file allow-lists, so we couldn't\nexclude `slatedb/src/rand.rs`.\n- [semgrep](https://github.com/semgrep/semgrep) seems to require an API\nkey to use it now 🤔\n- Fully removing all `rand` usage in the package. This is a tall order\nsince `rand::Rng` is an extension trait that gives us a lot of the\nfunctionality we need. We _have_ to allow code to import it into get\nthings like `.get()`. 😭 Not a fan.\n- Re-exporting `rand::prelude::*` through `slatedb/src/rand.rs`. This\nseemed no better than just allowing `rand` imports for `Rng` and such.\n\nAnyhow, this way is nice and clean. Unfortunately, it's not perfect. It\nwon't detect new RNGs that get added to `rand`, and I didn't do an\nexhaustive search of all possible RNGs, just the common ones\n(built-in's, ChaCha, xoshiro, and xorshift). Still, it catches a lot and\nis better than nothing.",
+          "timestamp": "2025-05-28T23:52:21Z",
+          "url": "https://github.com/slatedb/slatedb/commit/6f8fdcbe1f82d4a426d800db30d41efe672000fc"
+        },
+        "date": 1748507930209,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
+            "value": 18625.867,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 17655.518,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
+            "value": 20693.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
+            "value": 5172.7,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 19603.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 4908.82,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
+            "value": 17876.68,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
+            "value": 11932.12,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 12968.74,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 8629.84,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
+            "value": 14048.56,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
+            "value": 21135.42,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 9516.34,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 14249.12,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
+            "value": 9692.8,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
+            "value": 38811.578,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 5128.78,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 20570.68,
             "unit": "ops/sec"
           }
         ]
