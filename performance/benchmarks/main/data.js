@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749458447017,
+  "lastUpdate": 1749544792558,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -3049,6 +3049,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 23324.381,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "b2f063f3518168cf85630ec6bda6ab3884532bff",
+          "message": "Use `SystemClock` instead of `std::time` (#603)\n\nThis PR updates SlateDB to use `SystemTime` instead of the typical `std`\nsystem clock. It's part of the work for #267.\n\nThe following changes usages of SystemTime have been updated:\n\n- Moved `MonotonicClock` into `clock.rs`\n- Made `clippy.toml` detect `std::time`, `uuid`, and `ulid` usage\n- checkpoint.rs uses SystemTime::now()\n- config.rs's SystemClock, which is used for TTL and checkpoint times.\n- CompactorEventHandler::finish_compaction uses SystemTime::now() for\nlogging last compaction timestamp in stats.\n- db_cache/mod.rs uses Instant::now() when setting last_err_log_instant\n- garbage_collector.rs uses Utc::now() in run_gc_task.\n- storage_fs.rs::background_evict uses SystemTime::now()\n\nI could not update the following two usages:\n\n1. In moka.rs if ttl or tti are set. (Note: it appears Foyer only\nsupports max capacity)\n2. CompactorOrchestrator uses a non-async crossbeam ticker, which uses\nstd::time::Interval.\n\nFor (1), Moka simply doesn't provide a way to inject our clock. There\nare interfaces for it, but they're all hidden behind `#[cfg(test)]` and\n`pub(crate)` stuff.\n\nFor (2), I will probably refactor `CompactorOrchestrator` to use an\nasync run loop in a separate PR.\n\nI'm not crazy about the changes I had to make to GarbageCollector; they\nfeel invasive. I believe it's more a symptom of the widespread use of\nassociated function rather than a problem with the SystemClock design.\n\nFollow on work:\n\n- Remove `TestClock` since we have control over `DefaultSystemClock`\nwith `tokio`\n- Make `CompactorOrchestrator::run` async so we can use tokio's ticker\n(and thus, its Instant)\n- Investigate standardizing how we inject determinism.\n\nRegarding that last point, I have managed to introduce two (and soon to\nbe three) different ways to inject determinism:\n\n- `rand` uses static functions and variables\n- `SystemClock`/`LogicalClock` use dependency injection\n- `sos-vfs::fs` uses macros to swap `tokio::fs` out at compile time (I\nhaven't submitted a PR for this yet)\n\nIt's annoying me that we have three different styles. I'm not 100% sure\nif it's bad or not; I need to think about it. I wonder if we should use\nstatic functions/variables for the clock stuff as well\n(crate::clock::sys::now() and crate::clock::logical::now()). It seems\nlike it'd add more complexity (global onecell vs. dependency injection)\nfor pretty minimal payoff. It also gives us less fine-grained control.\nPerhaps we should go the other way, and pass Rng's using dependency\ninjection? Or just leave things as-is? WDYT? (I should note: I'm not\nenthusiastic about exposing `Rng` through our API. That library breaks\ncompatibility in frustrating ways and it's already caused a lot of\nproblems with proptest/uuid/ulid compatibility)",
+          "timestamp": "2025-06-08T03:35:15Z",
+          "url": "https://github.com/slatedb/slatedb/commit/b2f063f3518168cf85630ec6bda6ab3884532bff"
+        },
+        "date": 1749544791679,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
+            "value": 18691.65,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 18857.982,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
+            "value": 19860.939,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
+            "value": 4951.1,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 19476.779,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 4874.34,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
+            "value": 17606.881,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
+            "value": 11744.38,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 14612.46,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 9740,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
+            "value": 14030.98,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
+            "value": 21033.08,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 9030.86,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 13503.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
+            "value": 9997.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
+            "value": 40031.078,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 5753.64,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 23069.34,
             "unit": "ops/sec"
           }
         ]
