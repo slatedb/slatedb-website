@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749631165056,
+  "lastUpdate": 1749717551541,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -3293,6 +3293,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 23226.439,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "4b31053f86f6432314f31dd5f8e33e4d1fb093c7",
+          "message": "Add `Admin` and `AdminBuilder` (#610)\n\nI found that our public facing static functions are a real pain to work\nwith while working on #606 and #609. I initially thought using a\n`DbContext` that held just normally static stuff (rng, clock, etc) would\nbe helpful. After working through it, I felt the right thing to do was\nget rid of `DbContext` and implement proper builders for user-facing\nstuff. That includes:\n\n- admin.rs\n- compactor.rs (and related compactor stuff)\n- garbage_collector.rs\n\nEach of these builders will allow us to do `_with_system_clock` and\n`_with_logical_clock` if/when needed. As we add an RNG and filesystem\nfor DST, they'll also have `_with_*` methods for the appropriate\nbuilders.\n\nInternally, we'll pass actual `impl SystemClock`, `impl LogicalClock`,\nand so on to the structs and functions that need them.\n\nThis PR currently:\n\n- implements `Admin` and`AdminBuilder` to show what the improved UX will\nbe.\n- moves `delete_objects_with_prefix` to the bencher `main.rs` file since\nit's only used there and has nothing to do with SlateDB.\n- updates main.rs files to use the new `Admin` client.\n- moves `refresh_checkpoint` and `delete_checkpoint` out of `Db`\n(`checkpoint.rs`) and into `Admin.",
+          "timestamp": "2025-06-11T16:02:16Z",
+          "url": "https://github.com/slatedb/slatedb/commit/4b31053f86f6432314f31dd5f8e33e4d1fb093c7"
+        },
+        "date": 1749717550422,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
+            "value": 18826.449,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 20212.566,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
+            "value": 19169.232,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
+            "value": 4780.8,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 19879.82,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 4977.76,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
+            "value": 18876.58,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
+            "value": 12620.14,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 14417.62,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 9613.06,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
+            "value": 14151.32,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
+            "value": 21186.32,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 9617.92,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 14404.42,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
+            "value": 10300.04,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
+            "value": 41273.719,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 5263.46,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 20965.18,
             "unit": "ops/sec"
           }
         ]
