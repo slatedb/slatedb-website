@@ -1,130 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751585291942,
+  "lastUpdate": 1751592400460,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
-      {
-        "commit": {
-          "author": {
-            "name": "flaneur",
-            "username": "flaneur2020",
-            "email": "me.ssword@gmail.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "207715315477d3f73715925fd9599e3667dc7bad",
-          "message": "feat(checkpoint): always force flush on creating a Checkpoint (#589)\n\nthis pr is extracted from #519 to make it easier to review.\n\ncurrently, when we create a checkpoint with `CheckpointScope::All`, it\ncan operate in two modes:\n\n1. `force_flush=true`: explicitly triggers a flush, ensuring all data\naccessible by the DB is properly persisted.\n2. `force_flush=false`: does not trigger a flush, but waits for the WAL\nto be flushed in the background. The semantic guarantee is identical to\n`force_flush=true`; the only difference is it may wait longer.\n\nin #519, the relationship between WAL and IMM/L0 will change slightly:\nWAL will be used ONLY for recovery, and readers will NOT access WAL\nfiles except during startup. simplifying checkpoints to use \"force\nflush\" exclusively may offers several benefits:\n\n1. when creating a Checkpoint, we can have a mindset of \"all the data in\nthe checkpoint are persisted in SSTs (no need to worry about WAL)\".\n2. when reading a Checkpoint, we won't need to consider the details\nabout replaying WALs to access the latest checkpoint data.\n3. we can safely garbage collect WAL files without worrying about\ncheckpoints may potentially referencing them.\n\nthe potential downside is that creating checkpoints may become slightly\nmore resource-intensive. however, if I understand correctly, checkpoints\nare primarily used for creating backups/clones and aren't typically\nfrequent operations—they're usually triggered on a scheduled basis.\nwhile flushing to L0 has its cost, it remains relatively lightweight\ncompared to performing a full backup.\n\n---------\n\nCo-authored-by: Chris <criccomini@users.noreply.github.com>",
-          "timestamp": "2025-05-31T02:03:07Z",
-          "url": "https://github.com/slatedb/slatedb/commit/207715315477d3f73715925fd9599e3667dc7bad"
-        },
-        "date": 1748680549664,
-        "tool": "customBiggerIsBetter",
-        "benches": [
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Puts/s",
-            "value": 18697.768,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 4 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
-            "value": 21031.35,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
-            "value": 0,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Puts/s",
-            "value": 20329.883,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 4 Threads - Gets/s",
-            "value": 5080.617,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
-            "value": 19392.5,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
-            "value": 4850.32,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Puts/s",
-            "value": 19093.52,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 4 Threads - Gets/s",
-            "value": 12711.86,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
-            "value": 14526.98,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
-            "value": 9682.88,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Puts/s",
-            "value": 15121.44,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 4 Threads - Gets/s",
-            "value": 22673.32,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
-            "value": 10273.06,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
-            "value": 15468.34,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Puts/s",
-            "value": 10091.46,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 4 Threads - Gets/s",
-            "value": 40330.219,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
-            "value": 5218,
-            "unit": "ops/sec"
-          },
-          {
-            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
-            "value": 20851.439,
-            "unit": "ops/sec"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -3609,6 +3487,78 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 128 Threads - Gets/s",
             "value": 24260.551,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris Riccomini",
+            "username": "criccomini",
+            "email": "criccomini@apache.org"
+          },
+          "committer": {
+            "name": "Chris Riccomini",
+            "username": "criccomini",
+            "email": "criccomini@apache.org"
+          },
+          "id": "6859b68a1f5ac3b276f4866e6bb91f3e05874e89",
+          "message": "Handle throttling",
+          "timestamp": "2025-07-04T01:16:33Z",
+          "url": "https://github.com/slatedb/slatedb/commit/6859b68a1f5ac3b276f4866e6bb91f3e05874e89"
+        },
+        "date": 1751592399403,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 128 Threads - Puts/s",
+            "value": 2301.95,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 128 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 128 Threads - Puts/s",
+            "value": 2563.417,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 128 Threads - Gets/s",
+            "value": 641.467,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 128 Threads - Puts/s",
+            "value": 2821.15,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 128 Threads - Gets/s",
+            "value": 1863.85,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 128 Threads - Puts/s",
+            "value": 2831.883,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 128 Threads - Gets/s",
+            "value": 4221.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 128 Threads - Puts/s",
+            "value": 2422.917,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 128 Threads - Gets/s",
+            "value": 9668.866,
             "unit": "ops/sec"
           }
         ]
