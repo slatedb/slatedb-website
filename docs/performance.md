@@ -4,29 +4,21 @@ sidebar_position: 7
 
 # Performance
 
-SlateDB is still a young project and its performance has proven reasonable for a wide range of use cases already. Consequently, we haven't spent a lot of time optimizing SlateDB's performance. We plan to do so in the future.
-
-We have just begun to track SlateDB's performance. We currently have two benchmarking tools: **bencher** and **microbenchmarks**.
+We currently have two benchmarking tools: **bencher** and **microbenchmarks**.
 
 ## Benchmarks
 
-SlateDB comes with a [bencher](https://github.com/slatedb/slatedb/tree/main/src/bencher) tool to benchmark put/get operations against an object store. You can configure the tool with a variety of options. See [bencher/README.md](https://github.com/slatedb/slatedb/tree/main/src/bencher) for details. [benchmark-db.sh](https://github.com/slatedb/slatedb/blob/main/src/bencher/benchmark-db.sh) also serves as an example.
+SlateDB comes with a [bencher](https://github.com/slatedb/slatedb/tree/main/slatedb-bencher) tool to benchmark put/get operations against an object store. You can configure the tool with a variety of options. See [bencher/README.md](https://github.com/slatedb/slatedb/blob/main/slatedb-bencher/README.md) for details. [benchmark-db.sh](https://github.com/slatedb/slatedb/blob/main/slatedb-bencher/benchmark-db.sh) also serves as an example.
 
 ### Nightly
 
-We run this tool [nightly](https://github.com/slatedb/slatedb/blob/main/.github/workflows/nightly.yaml) and publish the results [here](https://slatedb.io/performance/benchmarks/main). The benchmark runs on [WarpBuild](https://warpbuild.com)'s [warp-ubuntu-latest-x64-16x](https://docs.warpbuild.com/cloud-runners) runners.
-
-:::warning
-
-We have configured the job to use a [LocalFilesystem](https://docs.rs/object_store/latest/object_store/local/struct.LocalFileSystem.html) instead of S3, so the results don't reflect performance against a real S3 bucket. We plan to use S3 with this benchmark in the future.
-
-:::
+We run bencher [nightly](https://github.com/slatedb/slatedb/blob/main/.github/workflows/nightly.yaml) and publish the results [here](https://slatedb.io/performance/benchmarks/main). The benchmark runs on [WarpBuild](https://warpbuild.com)'s [warp-ubuntu-latest-x64-16x](https://docs.warpbuild.com/cloud-runners) runners, which use Hetzner machines in Frankfurt. We use [Tigris](https://www.tigrisdata.com/) for object storage with the `auto` region setting, which resolves to Frankfurt as well. Bandwidth between WarpBuild (Hetzner) and Tigris seems to be about 500MiB/s down and 130MiB/s up. We routinely max out the bandwidth in the nightly tests.
 
 <iframe src="https://slatedb.io/performance/benchmarks/main" width="100%" height="540px"></iframe>
 
 ## Microbenchmarks
 
-We use [Criterion](https://bheisler.github.io/criterion.rs/) to run microbenchmarks (located in [benches](https://github.com/slatedb/slatedb/tree/main/benches)) for specific internal SlateDB functions. A comment is left on all PRs when a > 200% slowdown is detected.
+We use [Criterion](https://bheisler.github.io/criterion.rs/) to run microbenchmarks (located in [benches](https://github.com/slatedb/slatedb/tree/main/slatedb/benches)) for specific internal SlateDB functions. A comment is left on all PRs when a > 200% slowdown is detected.
 
 ### Nightly
 
