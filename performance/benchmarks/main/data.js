@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751857609410,
+  "lastUpdate": 1751877732678,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -731,6 +731,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5841.44,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "b9844edfc8df99c4fa306ba389b1d090f988a9c8",
+          "message": "Update proptest and rand (#671)\n\nThis PR updates rand to the latest version. I found we couldn't do this\nas part of #611 because proptest did not support the latest versions and\nrand made incompatible changes in their 0.9.0 release\n([#553](https://github.com/proptest-rs/proptest/issues/553).\n\nNow that proptest was updated to the latest rand version, we can update\neverything in lock-step. I've included ulid and uuid libraries as well,\nsince they too were blocked on the rand upgrade.\n\nFollow-on to #611",
+          "timestamp": "2025-07-07T07:56:27Z",
+          "url": "https://github.com/slatedb/slatedb/commit/b9844edfc8df99c4fa306ba389b1d090f988a9c8"
+        },
+        "date": 1751877731758,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 4957.817,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 6006.6,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 3994.133,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 1000.217,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1467,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 362.52,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 3110.65,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 2091.9,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1112.017,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 741.85,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1980.067,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 2963.033,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1313.66,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1955.94,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1548.167,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 6204.65,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1465.22,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5874.96,
             "unit": "ops/sec"
           }
         ]
