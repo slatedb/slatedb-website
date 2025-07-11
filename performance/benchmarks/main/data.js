@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752136881878,
+  "lastUpdate": 1752223253677,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -1219,6 +1219,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 4562.983,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "flaneur",
+            "username": "flaneur2020",
+            "email": "me.ssword@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "2fe991affaed8e2cb9caf3eed73589367484f09a",
+          "message": "Add transaction RFC (#260)\n\nThis RFC specifies the design for adding transactional support to SlateDB by:\n\n- Defining a Transaction API aligned with Snapshot and WriteBatch (get, put, delete, scan, commit, rollback)\n- Specifying isolation levels (Snapshot Isolation and Serializable Snapshot Isolation) with optimistic conflict checking via a global Oracle\n- Outlining a GC and expiration strategy to bound Oracle state and avoid floating garbage\n- Comparing transaction approaches in RocksDB and Badger\n- Laying out an implementation roadmap: WriteBatch → Snapshot → SI → SSI",
+          "timestamp": "2025-07-10T02:20:10Z",
+          "url": "https://github.com/slatedb/slatedb/commit/2fe991affaed8e2cb9caf3eed73589367484f09a"
+        },
+        "date": 1752223252859,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 5277.083,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 5242.683,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 4115.833,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 1029.117,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1387.72,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 346.74,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 2780.25,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1851.367,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1424.06,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 951.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 2142.9,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 3214.133,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1475.54,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 2202.28,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1551.5,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 6230.133,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1464.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5840.02,
             "unit": "ops/sec"
           }
         ]
