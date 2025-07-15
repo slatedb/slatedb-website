@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752482721747,
+  "lastUpdate": 1752568963181,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -1707,6 +1707,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5192.1,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "David Calavera",
+            "username": "calavera",
+            "email": "1050+calavera@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "56edc2d1fd5b5d1c37d78963e97897ee83250c6f",
+          "message": "fix: Use max_concurrent_compactions in size tiered compaction. (#675)\n\nUse the option in the configuration to check if we can pick the next\ncompaction.\n\nFixes https://github.com/slatedb/slatedb/issues/653",
+          "timestamp": "2025-07-15T03:25:04Z",
+          "url": "https://github.com/slatedb/slatedb/commit/56edc2d1fd5b5d1c37d78963e97897ee83250c6f"
+        },
+        "date": 1752568962158,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 1781.483,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 1746.433,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 3038.2,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 760.733,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1335.52,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 335.06,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 1802.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1200.2,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1312.18,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 877,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1324.9,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 1990.633,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1301.38,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1936.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1214.567,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 4859.5,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1300.56,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5222.64,
             "unit": "ops/sec"
           }
         ]
