@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752568963181,
+  "lastUpdate": 1752655413491,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -1829,6 +1829,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5222.64,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "5357b451e11b756de35675bad778f5c54ae110e7",
+          "message": "Protected against key/value length overflows in `SstRowCodecV0` (#679)\n\nSlateDB's block format only allows u16::MAX sized keys[^1] and u32::MAX\nsized values.\n\nThe `Db` currently allows users to put() with keys that are > u16 and\nvalues that are > u32. The `SstRowCodecV0` happily accepts these rows\nand casts the lengths (which are `usize` for developer ergonomics) with\n`as u16` and `as u32`. This will silently overflow lengths. The outcome\nis that future decodes will fail in odd ways (I was seeing `Error:\nInvalidRowFlags { encoded_bits: 244, known_bits: 15, message: \"Unable to\nparse flags. This may be caused by reading data encoded with a newer\ncodec.\" }`).\n\nThis PR adds protection both at the `WriteBatch` level and the\n`SstRowCodecV0` level. It also adds tests to validate things work as\nexpected. I opted to do the validation as a `panic` (via `assert`) in\nthe `WriteBatch` `put`/`delete` calls since a) it's in keeping with our\ncurrent `key.is_empty()` check, and b) we don't expose return a `Result`\nfor the methods (I didn't want to do a bw-incompatible change for this).\n\nI also briefly considered doing the check in `batch_write.rs`, but that\nwould a) burn CPU on the writer thread, b) defer the failure until\n`write` is called rather than exposing the issue immediately on\n`batch.put()`, and c) could leave us with a partially written batch\nunless we fully validate before writing (c.f. cpu burn). The advantage\nwould be that we could expose a error as a `SlateDbError` rather than\npanicking. I don't the tradeoffs are worth it.\n\n[^1]: _Technically_ we allow up to a max of u16 prefix bytes and u16\nsuffix bytes. But since the prefix can always be 0, we have to cap the\nsum of the two at 16.",
+          "timestamp": "2025-07-15T17:45:47Z",
+          "url": "https://github.com/slatedb/slatedb/commit/5357b451e11b756de35675bad778f5c54ae110e7"
+        },
+        "date": 1752655412394,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 1903.45,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 2070.383,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 2456,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 613.483,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1325.38,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 336.84,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 1791.667,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1191.283,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1311.26,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 881.76,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1434.767,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 2166.65,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1302.72,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1953.22,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1424.12,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 5693.66,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1300.16,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5217.96,
             "unit": "ops/sec"
           }
         ]
