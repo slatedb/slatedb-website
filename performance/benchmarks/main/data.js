@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752741802850,
+  "lastUpdate": 1752856538427,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -2073,6 +2073,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 4408.833,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "flaneur",
+            "username": "flaneur2020",
+            "email": "me.ssword@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "e318f5d191bcb212189dfceb13a52b1d2c9140c5",
+          "message": "feat(compaction): add retention policy for snapshot versioned data (#638)\n\nlsm engines like leveldb/rocksdb mostly takes a reference counting\napproach to manage the active snapshots.\n\nin slatedb, we have a single writer / multiple reader architecture, as a\nresult, we can not track the active snapshots in a single process. to\nallow having Snapshots or TimeTravel, we can consider having a\ntime-retention based approach, like:\nhttps://www.tabular.io/apache-iceberg-cookbook/data-operations-snapshot-expiration/\n\nthis pr plans to add a PoC about this time-based retention support.\n\nit should make some modifications over the compaction phase. currently,\nthe compaction phase is:\n\n1. we use MergeIterator to iterate the latest versioned key/values.\n2. filter out the expired/tombstoned key/values (if it's in last level).\n3. append to the new ssts.\n\nwith retention in consideration, it will become:\n\n1. iterate the multiple versions of a single key in the decreasing order\nof seqnum.\n2. if a key has the multiple versions, filter out the versions whose\ncreate_time is earlier than the retention time.\n3. if a key has only one version, and expired/tombstoned, skip this\nkey/value (if it's last level)\n4. append to the new ssts.\n\nto manage this retention logic, this pr adds a RetentionBuffer for this,\nit works as a state machine to:\n\n1. collect the multiple versions of the same key\n2. when all the versions has been collected, handle the retention policy\n3. after retention policy as applied to the versions, pop one version at\na time\n\nthis algorithm is not optimal on memory, but it's easier to reason about\nthe correctness of implementation. (we can do optimizations after we\nreviewed that this handling logic has no issues.)\n\nafter this change, the expiry & tombstone handling in compactor.rs also\nhas to be multi-version aware, so this PR moves the expiry & tombstone\nhandling logic into retention_iterator.rs as well.",
+          "timestamp": "2025-07-18T01:07:27Z",
+          "url": "https://github.com/slatedb/slatedb/commit/e318f5d191bcb212189dfceb13a52b1d2c9140c5"
+        },
+        "date": 1752856537374,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 1235.517,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 2143.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 2978.75,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 744.333,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1330.26,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 331.48,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 1792.85,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1188.3,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1308.62,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 868.84,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1420.267,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 2123.517,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1303.82,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1948.96,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1210.683,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 4856.517,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1300.52,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5200.02,
             "unit": "ops/sec"
           }
         ]
