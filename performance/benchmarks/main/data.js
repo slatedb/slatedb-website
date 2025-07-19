@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752856538427,
+  "lastUpdate": 1752914442122,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -2195,6 +2195,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5200.02,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f58bf62f2b9e6883e450ea7a9b837daa39ce7f9",
+          "message": "Remove tokio::time usage (#683)\n\nI thought it would be OK to continue to use `tokio::time` directly in\nSlateDB since we can pause/resume it in tests (e.g. with\n`start_paused=true`. Unfortunately, I found an issue with that when\nworking on some deterministic simulation tests. The issue arises if you\nwant to run a simulation test twice as though it were the same point in\ntime. Unfortunately, Tokio's `time` module does not allow users to set a\ntime in the past, only to advance it.\n\nThis PR goes through the code to replace (almost) all usage of\n`tokio::time` methods and types with our `SystemClock` trait. To\naccomplish all that tokio does for us, I had to introduce some new\nmethods to our system clock: advance, sleep, and ticker. I opted to\nreplace`timeout` usage witha `tokio::select!` rather than fight with\nRust's lifetime stuff more. If people strongly object lacking a\n`timeout` method, I can revisit it.\n\nThere are a few places where `tokio::time` is still used. All are in\ntests, and they're fairly harmless. Some day maybe we can scrub the\nremaining ones, but this PR is already quite large.\n\nThis PR also introduces `MockSystemClock`, which is a mock clock that's\ncompletely divorced from Tokio's time as well as std::time. It's\nentirely self-encapsulated, and allows users to set any time they want.\nThis is the clock I use in my DST branch, and it seems to work quite\nnicely.\n\nI've also added tests for both the default and mock system clocks.\n\nNote that the mock clock is only available when SlateDB's `test-util`\nfeature is enabled (this is a new feature in this PR). I had to go this\nroute because DST is done in the `slatedb-dst` crate, which only has\naccess to public APIs in SlateDB. Otherwise, I would have simply used\n`#[cfg(test)]`. The `test-util` follows Tokio's pattern as well.",
+          "timestamp": "2025-07-18T21:18:55Z",
+          "url": "https://github.com/slatedb/slatedb/commit/9f58bf62f2b9e6883e450ea7a9b837daa39ce7f9"
+        },
+        "date": 1752914441070,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 1593.3,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 1713.867,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 2359.467,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 590.983,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1331.04,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 329.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 1485.583,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 990.333,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1307.76,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 875.98,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1223.15,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 1832.383,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1303.24,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1962.24,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1156,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 4612.833,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1300.98,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5225.16,
             "unit": "ops/sec"
           }
         ]
