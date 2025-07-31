@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753865022222,
+  "lastUpdate": 1753951443961,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -3415,6 +3415,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5554.26,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "82847c76d07c4701cc63994091bcf087bb113c68",
+          "message": "Add deterministic simulation tests to SlateDB (#694)\n\nA `slatedb-dst` package is added in this PR. The package contains\ndst.rs, which contains a deterministic simulator that runs random\noperations against a SlateDB instance and verifies that the DB has the\ncorrect data. Several integration tests are available in\n`simulation.rs`; they've been added to the `pr.yaml` check, too. See the\nREADME.md, dst.rs docs, and simulations.rs docs for usage and\nimplementation details.\n\nThere is still much to be done to improve the simulation tests:\n\n- Add unit tests to dst.rs to verify method behavior.\n- Add a CLI to trigger DST's outside of `cargo`\n- Incorporate DSTs into the `nightly.yaml`\n- Complete the `TODO`s to add more randomness and configuration\n- Add TTL, checkpointing, DbReader, and fencing (multi-writer), and DB\nclose/open checks and actions\n- Incorporate the object store file cache and inject faults in the\nfilesystem\n- Inject faults in the object store requests\n- Evaluate using proptest to build DB settings and generate random data\n- Verify log output is identical in `test_dst_is_deterministic` (we only\nverify final seed and times are identical)\n\nStill, I feel this is a good start and the PR is already fairly lengthy.\nI'd like to do the CLI and nightly.yaml as follow-ons. The remaining\nitems can be completed over time.\n\nWhile running the tests, I discovered two instances of non-determinism\nin SlateDB:\n\n- The compactor was using `spawn_blocking` to start and stop compactions\nwith the executor. I assumed `spawn_blocking` would be deterministic,\nbut it turns out not to be. It spawns outside the `current_thread` Tokio\nruntime and creates a non-deterministic race between `.await` calls in\nthe `current_thread` and those in the spawned thread. I fixed this by\nadding a branch for `#[cfg(dst)]` that uses tokio's `spawn`, which runs\non the runtime threads. I opted not to use `spawn` for production code\nbecause we can't trust pluggable executors not to block for a long time\non start/stop compaction calls; they could block our runtime threads.\n- ULID was using the RNG to deterministically generate the random\nportion of its bytes, but was still using its own clock for the\ntimestamp portion. I fixed this by adding a `timestamp_ms` field to\n`gen_ulid`.\n\nI found the following resources helpful when doing this work:\n\n- https://pierrezemb.fr/posts/tokio-hidden-gems/\n- https://www.reddit.com/r/rust/comments/1jr8ogo/comment/mle11wh/\n- https://s2.dev/blog/dst\n\nFixes #267",
+          "timestamp": "2025-07-30T22:23:33Z",
+          "url": "https://github.com/slatedb/slatedb/commit/82847c76d07c4701cc63994091bcf087bb113c68"
+        },
+        "date": 1753951442945,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 1963.383,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 3076.55,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 3114.517,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 788.183,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1100.133,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 277.15,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 1811.167,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1205.15,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1307.96,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 870.32,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 1381.75,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 2071.85,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1088.817,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 1662.183,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1255.95,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 5016.683,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1301.46,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5232.5,
             "unit": "ops/sec"
           }
         ]
