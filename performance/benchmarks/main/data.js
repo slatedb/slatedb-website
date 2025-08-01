@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753951443961,
+  "lastUpdate": 1754037791403,
   "repoUrl": "https://github.com/slatedb/slatedb",
   "entries": {
     "slatedb-bencher/benchmark-db.sh": [
@@ -3537,6 +3537,128 @@ window.BENCHMARK_DATA = {
           {
             "name": "SlateDB 20% Puts 1 Threads - Gets/s",
             "value": 5232.5,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris",
+            "username": "criccomini",
+            "email": "criccomini@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "3d8abfd1c2688d06196708695c8f98fa48a81aad",
+          "message": "Prevent ticker starvation (#708)",
+          "timestamp": "2025-07-31T21:00:42Z",
+          "url": "https://github.com/slatedb/slatedb/commit/3d8abfd1c2688d06196708695c8f98fa48a81aad"
+        },
+        "date": 1754037790568,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Puts/s",
+            "value": 6430,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 32 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Puts/s",
+            "value": 5546.633,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 100% Puts 1 Threads - Gets/s",
+            "value": 0,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Puts/s",
+            "value": 4709.817,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 32 Threads - Gets/s",
+            "value": 1169.8,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Puts/s",
+            "value": 1469.6,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 80% Puts 1 Threads - Gets/s",
+            "value": 368.98,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Puts/s",
+            "value": 2804.767,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 32 Threads - Gets/s",
+            "value": 1867.967,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Puts/s",
+            "value": 1422.7,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 60% Puts 1 Threads - Gets/s",
+            "value": 950.82,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Puts/s",
+            "value": 2098.267,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 32 Threads - Gets/s",
+            "value": 3157.2,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Puts/s",
+            "value": 1387.78,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 40% Puts 1 Threads - Gets/s",
+            "value": 2089.5,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Puts/s",
+            "value": 1589.4,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 32 Threads - Gets/s",
+            "value": 6365.183,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Puts/s",
+            "value": 1468.6,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "SlateDB 20% Puts 1 Threads - Gets/s",
+            "value": 5903.06,
             "unit": "ops/sec"
           }
         ]
