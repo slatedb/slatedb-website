@@ -1,3 +1,8 @@
+> [!CAUTION]
+> **This repository  is archived. Please submit website changes to the [`website`](https://github.com/slatedb/slatedb/tree/main/website) directory in the main [`slatedb` repository](https://github.com/slatedb/slatedb).**
+
+---
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
